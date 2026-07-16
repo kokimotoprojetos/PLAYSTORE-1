@@ -918,16 +918,22 @@
   </button>
 
   <a class="gp-nav-logo" href="https://play.google.com/store" target="_blank">
-    <img
-      src="https://play-lh.googleusercontent.com/_re6mcALPaqotePA0WkgYeOQ6TighHRUS62FRmREPEhyZPdGM3QmRjcSpiMt6Pz1O-WZyvEIy4mtGHj9zw=s38"
-      srcset="https://play-lh.googleusercontent.com/_re6mcALPaqotePA0WkgYeOQ6TighHRUS62FRmREPEhyZPdGM3QmRjcSpiMt6Pz1O-WZyvEIy4mtGHj9zw=s76 2x"
-      alt="Google Play"
-      width="32"
-      height="32"
-      style="border-radius:0;box-shadow:none;"
-    >
+    <!-- Real Google Play triangle logo (4 colored triangles) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="36" height="36">
+      <!-- White rounded background -->
+      <rect width="48" height="48" rx="11" fill="#fff" stroke="#e8eaed" stroke-width="1"/>
+      <!-- Blue top-left -->
+      <polygon points="9,9 22,24 9,24" fill="#4285F4"/>
+      <!-- Green bottom-left -->
+      <polygon points="9,24 22,24 9,39" fill="#34A853"/>
+      <!-- Yellow top-right -->
+      <polygon points="9,9 43,24 22,24" fill="#FBBC05"/>
+      <!-- Red bottom-right -->
+      <polygon points="22,24 43,24 9,39" fill="#EA4335"/>
+    </svg>
     <span class="gp-nav-logo-text">Google Play</span>
   </a>
+
 
   <!-- Desktop: tabs next to logo -->
   <nav class="gp-desktop-tabs desktop-only">
