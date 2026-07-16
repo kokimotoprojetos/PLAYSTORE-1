@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thunder VPN - VPN mais segura e ultrarrápida</title>
+  <meta name="description" content="Baixe o Thunder VPN, a rede privada virtual segura mais rápida do mundo. Criptografe sua conexão, proteja seus dados em redes Wi-Fi públicas.">
+  <link rel="icon" type="image/x-icon" href="https://www.gstatic.com/android/market_images/web/favicon_v3.ico">
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background glows -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== -->
+  <header class="header-nav" id="main-nav">
+    <div class="nav-container">
+      <a href="#" class="logo-link">
+        <img class="logo-img" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Icon">
+        <span class="logo-text">THUNDER VPN</span>
+      </a>
+
+      <!-- View Switcher Toggle -->
+      <div class="view-switcher">
+        <button id="btn-show-landing" class="switch-btn active">
+          <i class="fa-solid fa-rocket"></i> Landing Page
+        </button>
+        <button id="btn-show-playstore" class="switch-btn">
+          <i class="fa-brands fa-google-play"></i> Google Play
+        </button>
+      </div>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#features" class="nav-link">Recursos</a></li>
+          <li><a href="#servers" class="nav-link">Servidores</a></li>
+          <li><a href="#reviews" class="nav-link">Avaliações</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="nav-cta">Baixar Agora</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       VIEW 1: PREMIUM LANDING PAGE
+       ========================================================================== -->
+  <div id="landing-view" class="view-section active">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="badge-online">
+          <span class="badge-dot"></span>
+          Conexão Segura Ativa &bull; 99.9% Uptime
+        </div>
+        <h1 class="hero-title">A VPN mais rápida e <br><span class="gradient-text">segura do mundo</span></h1>
+        <p class="hero-subtitle">
+          Criptografe sua conexão com um clique. O 'Thunder VPN' é a ferramenta essencial de segurança cibernética para navegar de forma totalmente anônima, segura e contornar restrições.
+        </p>
+        <div class="hero-actions">
+          <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="btn-primary">
+            <i class="fa-brands fa-google-play"></i> Obter na Google Play
+          </a>
+          <a href="#servers" class="btn-secondary">
+            Ver Servidores <i class="fa-solid fa-server"></i>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-val">50M+</span>
+            <span class="stat-lbl">Downloads</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">4.8★</span>
+            <span class="stat-lbl">Classificação</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">100%</span>
+            <span class="stat-lbl">Segurança</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Mockup Panel -->
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <span>Thunder VPN</span>
+              <span id="phone-battery"><i class="fa-solid fa-battery-full"></i> 100%</span>
+            </div>
+            
+            <div style="text-align: center; width: 100%;">
+              <div class="vpn-status-title">Status da Rede</div>
+              <div id="vpn-status-text" class="vpn-status-val">DESCONECTADO</div>
+            </div>
+
+            <!-- Interative Power Button -->
+            <div class="power-button-container">
+              <button id="vpn-connect-btn" class="power-btn">
+                <i class="fa-solid fa-power-off"></i>
+              </button>
+              <div class="pulse-ring-1"></div>
+              <div class="pulse-ring-2"></div>
+            </div>
+
+            <!-- Mockup metrics panel -->
+            <div class="mockup-metrics">
+              <div class="metric-box">
+                <span class="metric-lbl">Velocidade</span>
+                <span id="metric-speed" class="metric-val">-- Mbps</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-lbl">Ping</span>
+                <span id="metric-ping" class="metric-val">-- ms</span>
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 0.5rem;">
+              Toque no botão para simular a conexão
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Por Que Escolher</span>
+          <h2 class="section-title">Proteção Inteligente de Navegação</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="feature-title">Criptografia Total</h3>
+            <p class="feature-desc">Criptografa sua conexão de Internet para que terceiros não consigam rastrear sua atividade online.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h3 class="feature-title">Alta Velocidade</h3>
+            <p class="feature-desc">Grande número de servidores de banda ultra larga com carregamentos e streaming sem interrupções.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-user-secret"></i>
+            </div>
+            <h3 class="feature-title">Sem Registro</h3>
+            <p class="feature-desc">Política estrita de não registro (no-log). Suas buscas e dados de tráfego nunca são armazenados.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="feature-title">Configuração Zero</h3>
+            <p class="feature-desc">Nenhum cadastro ou dados adicionais de login necessários. Basta um clique para começar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servers Section -->
+    <section id="servers" class="servers-section">
+      <div class="section-container">
+        <div class="servers-container">
+          <div>
+            <span class="section-tag">Rede Global</span>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Servidores Gratuitos em Todo o Mundo</h2>
+            <p class="hero-subtitle" style="margin-bottom: 2rem;">
+              Nossa infraestrutura cobre a América do Norte, Europa e Ásia, com expansões frequentes. Altere a localização a qualquer momento para otimizar sua conexão.
+            </p>
+            <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color)">
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Dica de Conexão</h4>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Se a velocidade diminuir ou a conexão cair, clique no ícone de bandeira no aplicativo móvel para atualizar e selecionar a rede com melhor ping.</p>
+            </div>
+          </div>
+
+          <!-- Interactive server speed widget -->
+          <div class="server-list-card">
+            <div class="server-list-header">
+              <span class="server-list-title">Lista de Servidores</span>
+              <button id="btn-ping-test" class="speedtest-btn">Testar Pings</button>
+            </div>
+            <div class="server-items" id="server-list-container">
+              <!-- JS will inject server list items here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Opinião de Quem Usa</span>
+          <h2 class="section-title">Avaliações dos Usuários</h2>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div>
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"O app Thunder VPN é excelente! Muito bom mesmo. Obrigado ao time que desenvolve e melhora esse app!"</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">M</div>
+              <div class="author-info">
+                <span class="author-name">Marcos Souza</span>
+                <span class="author-title">Usuário Android</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div>
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"Uso diariamente e, ao contrário de outros apps, ele mantém a estabilidade. Muito rápido e eficiente!"</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">A</div>
+              <div class="author-info">
+                <span class="author-name">Aline Oliveira</span>
+                <span class="author-title">Usuária Android</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div>
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"VPN excelente. Super simples de ligar, não tem telas infinitas de propaganda. Recomendo muito!"</p>
+            </div>
+            <div class="review-author">
+              <div class="author-avatar">F</div>
+              <div class="author-info">
+                <span class="author-name">Felipe Costa</span>
+                <span class="author-title">Usuário Android</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       VIEW 2: GOOGLE PLAY STORE REPLICA
+       ========================================================================== -->
+  <div id="playstore-view" class="view-section">
+    
+    <!-- Header Bar Google Play Style -->
+    <div class="gp-header-bar">
+      <div class="gp-logo-search">
+        <a href="#" class="gp-logo">
+          <svg viewBox="0 0 48 48" width="28" height="28" style="vertical-align: middle;">
+            <path fill="#4CAF50" d="M37 24L11 39V9z"/>
+            <path fill="#FFC107" d="M11 9l18 10L11 39z"/>
+            <path fill="#FF3D00" d="M11 9v30l5-3z"/>
+            <path fill="#1976D2" d="M37 24L29 19 11 39z"/>
+          </svg>
+          <span>Google Play</span>
+        </a>
+        <div class="gp-search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Pesquisar apps e jogos..." disabled value="Thunder VPN">
+        </div>
+      </div>
+      <div class="gp-user-actions">
+        <button class="gp-icon-btn"><i class="fa-regular fa-circle-question"></i></button>
+        <div class="gp-profile-pic">T</div>
+      </div>
+    </div>
+
+    <!-- Play Store Content Layout -->
+    <div class="gp-content-container">
+      
+      <!-- Left Main Column -->
+      <div class="gp-main-col">
+        
+        <!-- App Identity Header -->
+        <div class="gp-app-header-block">
+          <img class="gp-app-icon" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Logo">
+          <div class="gp-app-info">
+            <h1 class="gp-app-title">Thunder VPN - VPN mais segura</h1>
+            <a href="#" class="gp-dev-name">Secure Signal Inc.</a>
+            <span class="gp-tagline">Contém anúncios &bull; Compras no app</span>
+          </div>
+        </div>
+
+        <!-- Google Play Stats Header Row -->
+        <div class="gp-stats-row">
+          <div class="gp-stat-block">
+            <div class="gp-stat-primary">4,8 <i class="fa-solid fa-star" style="font-size: 0.8rem;"></i></div>
+            <div class="gp-stat-secondary">1,48 mi avaliações</div>
+          </div>
+          <div class="gp-stat-divider"></div>
+          <div class="gp-stat-block">
+            <div class="gp-stat-primary">50 mi+</div>
+            <div class="gp-stat-secondary">Downloads</div>
+          </div>
+          <div class="gp-stat-divider"></div>
+          <div class="gp-stat-block">
+            <div class="gp-stat-primary">Livre</div>
+            <div class="gp-stat-secondary">Classificação livre</div>
+          </div>
+        </div>
+
+        <!-- Call to Install -->
+        <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="gp-install-btn">Instalar</a>
+        <div class="gp-device-compat">
+          <i class="fa-solid fa-laptop-code"></i> Este app está disponível para todos os seus dispositivos.
+        </div>
+
+        <!-- Screenshot Gallery -->
+        <h3 class="gp-gallery-title">Capturas de tela</h3>
+        <div class="gp-screenshots-wrapper" id="gp-gallery-container">
+          <!-- Screenshots will be loaded here by script.js -->
+        </div>
+
+        <!-- About this App -->
+        <div class="gp-section-title-row">
+          <h2 class="gp-section-title">Sobre este app</h2>
+          <i class="fa-solid fa-arrow-right gp-section-arrow"></i>
+        </div>
+        
+        <div class="gp-app-description" id="gp-desc-container">
+          <!-- Raw Play Store description injected here by script.js -->
+        </div>
+
+        <!-- Ratings Details -->
+        <h2 class="gp-section-title" style="margin: 2rem 0 1rem;">Notas e avaliações</h2>
+        <div class="gp-ratings-detail">
+          <div>
+            <div class="gp-rating-big-num">4.8</div>
+            <div class="gp-rating-stars-total">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span class="gp-rating-total-count">1.487.654 avaliações</span>
+            </div>
+          </div>
+          
+          <div class="gp-ratings-bars">
+            <div class="gp-rating-bar-row">
+              <span class="gp-bar-num">5</span>
+              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="gp-rating-bar-row">
+              <span class="gp-bar-num">4</span>
+              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 8%;"></div></div>
+            </div>
+            <div class="gp-rating-bar-row">
+              <span class="gp-bar-num">3</span>
+              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 3%;"></div></div>
+            </div>
+            <div class="gp-rating-bar-row">
+              <span class="gp-bar-num">2</span>
+              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 2%;"></div></div>
+            </div>
+            <div class="gp-rating-bar-row">
+              <span class="gp-bar-num">1</span>
+              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 2%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated reviews block -->
+        <div class="gp-reviews-list">
+          <div class="gp-review-item">
+            <div class="gp-review-user-header">
+              <div class="gp-review-user">
+                <div class="gp-review-avatar">J</div>
+                <span class="gp-review-name">Jonas Pereira</span>
+              </div>
+              <button class="gp-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="gp-review-stars-date">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="gp-review-date">10 de julho de 2026</span>
+            </div>
+            <p class="gp-review-body">O app é muito bom e cumpre o que promete, que é navegar de forma privada. Tem anúncios, mas são poucos e não atrapalham.</p>
+          </div>
+          <div class="gp-review-item">
+            <div class="gp-review-user-header">
+              <div class="gp-review-user">
+                <div class="gp-review-avatar" style="background:#5C6BC0;">M</div>
+                <span class="gp-review-name">Maria Helena</span>
+              </div>
+              <button class="gp-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="gp-review-stars-date">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="gp-review-date">3 de junho de 2026</span>
+            </div>
+            <p class="gp-review-body">Estava procurando uma VPN simples e sem burocracia de cadastros. Essa é perfeita. Apenas clico e já estou protegida.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column (Sidebar details) -->
+      <aside class="gp-side-col">
+        <div>
+          <h3 class="gp-side-section-title">Contato do desenvolvedor</h3>
+          <div class="gp-info-list">
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Website</span>
+              <span class="gp-info-val"><a href="https://www.securesignal.app/" target="_blank">securesignal.app</a></span>
+            </div>
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">E-mail</span>
+              <span class="gp-info-val"><a href="mailto:thunder-vpn@free-signal.com">thunder-vpn@free-signal.com</a></span>
+            </div>
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Endereço</span>
+              <span class="gp-info-val">Secure Signal Inc.<br>Delaware, EUA</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="gp-side-section-title">Informações adicionais</h3>
+          <div class="gp-info-list">
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Versão</span>
+              <span class="gp-info-val">5.0.12 (última versão)</span>
+            </div>
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Atualizado em</span>
+              <span class="gp-info-val">12 de julho de 2026</span>
+            </div>
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Tamanho do arquivo</span>
+              <span class="gp-info-val">8.2 MB</span>
+            </div>
+            <div class="gp-info-item">
+              <span class="gp-info-lbl">Oferecido por</span>
+              <span class="gp-info-val">Secure Signal Inc.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       MAIN FOOTER
+       ========================================================================== -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="logo-link">
+          <img class="logo-img" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Icon">
+          <span class="logo-text">THUNDER VPN</span>
+        </a>
+        <p class="footer-desc">
+          Uma das ferramentas de rede privada virtual mais populares e seguras no Android. Proteja seu tráfego e aproveite o acesso a servidores no mundo inteiro gratuitamente.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-link-group">
+          <span class="footer-link-title">Produto</span>
+          <a href="#features" class="footer-link-item">Recursos</a>
+          <a href="#servers" class="footer-link-item">Servidores</a>
+          <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="footer-link-item">Download</a>
+        </div>
+        <div class="footer-link-group">
+          <span class="footer-link-title">Suporte</span>
+          <a href="https://www.securesignal.app/" class="footer-link-item" target="_blank">Website Oficial</a>
+          <a href="mailto:thunder-vpn@free-signal.com" class="footer-link-item">E-mail</a>
+          <a href="#" class="footer-link-item">FAQ</a>
+        </div>
+        <div class="footer-link-group">
+          <span class="footer-link-title">Legal</span>
+          <a href="#" class="footer-link-item">Privacidade</a>
+          <a href="#" class="footer-link-item">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Secure Signal Inc. Todos os direitos reservados. Adaptado para Vercel.</span>
+      <div class="footer-socials">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
