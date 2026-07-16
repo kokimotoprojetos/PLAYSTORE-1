@@ -1,56 +1,32 @@
-# Thunder VPN - Landing Page & Google Play Replica
+# Thunder VPN - Réplica da Google Play Store
 
-Este projeto é uma recriação moderna da página do **Thunder VPN** da Google Play Store adaptada para a web. O site contém uma visualização dupla inovadora: uma **Landing Page Premium** de alta conversão e uma **Réplica da Google Play Store** fiel e interativa.
+Réplica estática fiel da página oficial do aplicativo **Thunder VPN** na Google Play Store, adaptada para hospedagem no Vercel.
 
-Totalmente pronto para hospedagem estática no **Vercel** e repositórios do **GitHub**.
+## O que está incluído
 
----
+- `index.html` — Página completa com o layout real da Google Play Store, incluindo:
+  - 10 capturas de tela originais do app (imagens reais da Play Store)
+  - Ícone oficial do aplicativo
+  - Descrição completa em português (PT-BR)
+  - Notas e avaliações com barras de classificação
+  - Seção de segurança dos dados
+  - Informações do desenvolvedor
+  - Lightbox para visualizar screenshots ampliadas
+- `vercel.json` — Configuração para deploy no Vercel
 
-## ⚡ Recursos Principais
+## Como fazer deploy no Vercel
 
-### 1. Landing Page Premium
-- **Estética Futurista**: Tema escuro com efeitos *glassmorphism*, gradientes vibrantes em neon cyan e roxo.
-- **Simulador de Conexão**: Um smartphone virtual interativo que simula conexão VPN ativa/inativa com alteração de status, cálculo de velocidade de download e pings realistas.
-- **Lista de Servidores**: Exibição em tempo real de latência simulada (pings) com botão interativo para retestar a rede.
+### Via GitHub (recomendado)
+1. Faça o push deste repositório para o GitHub
+2. Acesse [vercel.com](https://vercel.com) → **Add New Project**
+3. Importe o repositório e clique em **Deploy**
 
-### 2. Réplica da Google Play Store
-- **Design Fiel**: Layout responsivo mimetizando o visual oficial da Google Play Store para computadores e celulares.
-- **Carregamento Dinâmico**: Consome dados estruturados direto de `data.json` para carregar capturas de tela e descrição oficiais.
-- **Modo Claro Adaptativo**: O tema do site alterna automaticamente para modo claro quando a visualização Google Play está ativa para manter a fidelidade visual da loja.
-
----
-
-## 🚀 Como Executar Localmente
-
-Como o projeto foi desenvolvido em HTML puro, CSS moderno e Vanilla JavaScript, não há etapas de compilação! 
-
-Você pode rodar localmente usando qualquer servidor de arquivos estáticos. Exemplo com Node.js:
-
+### Via Vercel CLI
 ```bash
-# Com npx
-npx serve .
+npm install -g vercel
+vercel
 ```
 
-Ou simplesmente abrindo o arquivo `index.html` diretamente em seu navegador.
+## Link da página original
 
----
-
-## ☁️ Como Subir para o Vercel
-
-### Método 1: Integração com GitHub (Recomendado)
-1. Crie um novo repositório no seu GitHub.
-2. Faça o push dos arquivos deste diretório.
-3. Acesse a dashboard do [Vercel](https://vercel.com).
-4. Clique em **Import Project** e selecione o repositório criado.
-5. Clique em **Deploy**. O Vercel detectará as configurações no `vercel.json` automaticamente.
-
-### Método 2: Vercel CLI (Direto pelo terminal)
-1. Instale o Vercel CLI globalmente:
-   ```bash
-   npm install -g vercel
-   ```
-2. No diretório do projeto, execute o comando:
-   ```bash
-   vercel
-   ```
-3. Siga as instruções do terminal e o deploy estará online em segundos!
+https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR

@@ -1,550 +1,1220 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thunder VPN - VPN mais segura e ultrarrápida</title>
-  <meta name="description" content="Baixe o Thunder VPN, a rede privada virtual segura mais rápida do mundo. Criptografe sua conexão, proteja seus dados em redes Wi-Fi públicas.">
-  <link rel="icon" type="image/x-icon" href="https://www.gstatic.com/android/market_images/web/favicon_v3.ico">
-  
-  <!-- FontAwesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+  <title>Thunder VPN - VPN mais segura – Apps no Google Play</title>
+  <meta name="description" content="Thunder VPN - VPN mais segura e ultrarrápida">
+  <link rel="icon" href="https://www.gstatic.com/android/market_images/web/favicon_v3.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gp-green: #01875f;
+      --gp-green-dark: #006845;
+      --gp-blue: #4285f4;
+      --gp-text-primary: #202124;
+      --gp-text-secondary: #5f6368;
+      --gp-text-muted: #9aa0a6;
+      --gp-border: #e8eaed;
+      --gp-bg: #ffffff;
+      --gp-bg-hover: #f8f9fa;
+      --gp-surface: #f1f3f4;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8f9fa;
+      color: var(--gp-text-primary);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    img { display: block; }
+
+    /* ===== TOP NAV ===== */
+    .gp-topnav {
+      background: #fff;
+      border-bottom: 1px solid var(--gp-border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      gap: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .gp-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .gp-nav-logo-text {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 20px;
+      color: #5f6368;
+      letter-spacing: -0.2px;
+    }
+
+    .gp-nav-logo svg { flex-shrink: 0; }
+
+    .gp-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    .gp-nav-tab {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gp-text-secondary);
+      padding: 0 16px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .gp-nav-tab:hover { color: var(--gp-text-primary); }
+    .gp-nav-tab.active { color: var(--gp-green); border-bottom-color: var(--gp-green); }
+
+    .gp-search-wrap {
+      flex: 1;
+      max-width: 560px;
+      margin-left: auto;
+    }
+
+    .gp-search-box {
+      display: flex;
+      align-items: center;
+      background: var(--gp-surface);
+      border-radius: 24px;
+      padding: 0 16px;
+      height: 46px;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+
+    .gp-search-box:focus-within { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.2); }
+
+    .gp-search-icon { color: var(--gp-text-secondary); flex-shrink: 0; }
+
+    .gp-search-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      color: var(--gp-text-primary);
+      width: 100%;
+    }
+
+    .gp-search-input::placeholder { color: var(--gp-text-secondary); }
+
+    .gp-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .gp-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gp-text-secondary);
+      transition: background 0.15s;
+    }
+
+    .gp-icon-btn:hover { background: var(--gp-surface); }
+
+    .gp-signin-btn {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gp-blue);
+      border: 1px solid var(--gp-border);
+      background: transparent;
+      padding: 0 20px;
+      height: 36px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .gp-signin-btn:hover { background: #e8f0fe; }
+
+    /* ===== BREADCRUMB ===== */
+    .gp-breadcrumb {
+      background: #fff;
+      border-bottom: 1px solid var(--gp-border);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 48px;
+    }
+
+    .gp-breadcrumb a, .gp-breadcrumb span {
+      font-size: 13px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-breadcrumb a:hover { color: var(--gp-green); }
+
+    .gp-breadcrumb-sep {
+      margin: 0 4px;
+      color: var(--gp-text-muted);
+    }
+
+    .gp-breadcrumb-current {
+      color: var(--gp-text-primary);
+      font-weight: 500;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .gp-main {
+      max-width: 1128px;
+      margin: 0 auto;
+      padding: 24px 40px 60px;
+      background: #f8f9fa;
+    }
+
+    /* ===== APP HEADER ===== */
+    .gp-app-header {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .gp-app-icon-large {
+      width: 176px;
+      height: 176px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .gp-app-header-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 4px;
+    }
+
+    .gp-app-title {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--gp-text-primary);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .gp-app-dev {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gp-green);
+      margin-bottom: 8px;
+    }
+
+    .gp-app-dev:hover { text-decoration: underline; }
+
+    .gp-app-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .gp-chip {
+      font-size: 11px;
+      color: var(--gp-text-secondary);
+      background: var(--gp-surface);
+      border-radius: 12px;
+      padding: 3px 10px;
+    }
+
+    .gp-app-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px solid var(--gp-border);
+      border-bottom: 1px solid var(--gp-border);
+      margin-bottom: 16px;
+    }
+
+    .gp-stat-block {
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .gp-stat-val {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--gp-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .gp-stat-icon { font-size: 14px; }
+    .gp-stat-ico-rating { color: var(--gp-green); }
+
+    .gp-stat-lbl {
+      font-size: 11px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-stat-sep {
+      width: 1px;
+      height: 40px;
+      background: var(--gp-border);
+    }
+
+    .gp-install-btn {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      background: var(--gp-green);
+      color: #fff;
+      border: none;
+      padding: 0 24px;
+      height: 40px;
+      border-radius: 4px;
+      width: 100%;
+      margin-bottom: 12px;
+      transition: background 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .gp-install-btn:hover { background: var(--gp-green-dark); }
+
+    .gp-device-note {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== SCREENSHOTS ===== */
+    .gp-section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+
+    .gp-section-title {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--gp-text-primary);
+      margin-bottom: 16px;
+    }
+
+    .gp-screenshots-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #c1c1c1 transparent;
+    }
+
+    .gp-screenshots-scroll::-webkit-scrollbar { height: 6px; }
+    .gp-screenshots-scroll::-webkit-scrollbar-track { background: transparent; }
+    .gp-screenshots-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+
+    .gp-screenshot {
+      height: 296px;
+      width: 526px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      border: 1px solid var(--gp-border);
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .gp-screenshot:hover { opacity: 0.92; }
+
+    /* ===== DESCRIPTION ===== */
+    .gp-desc-body {
+      font-size: 14px;
+      color: var(--gp-text-primary);
+      line-height: 1.6;
+    }
+
+    .gp-desc-body b { font-weight: 500; }
+
+    .gp-desc-collapsed {
+      max-height: 160px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gp-desc-collapsed::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(transparent, #fff);
+    }
+
+    .gp-read-more-btn {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gp-green);
+      background: transparent;
+      border: none;
+      padding: 12px 0 0;
+      display: block;
+      cursor: pointer;
+    }
+
+    .gp-read-more-btn:hover { text-decoration: underline; }
+
+    /* ===== RATINGS SECTION ===== */
+    .gp-ratings-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .gp-rating-big {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .gp-rating-number {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 64px;
+      font-weight: 300;
+      color: var(--gp-text-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .gp-rating-stars-big {
+      color: var(--gp-green);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .gp-rating-count-small {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-rating-bars {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .gp-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gp-bar-label {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      width: 8px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .gp-bar-bg {
+      flex: 1;
+      height: 8px;
+      background: var(--gp-surface);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .gp-bar-fill {
+      height: 100%;
+      background: var(--gp-green);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    /* ===== REVIEW CARDS ===== */
+    .gp-reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .gp-review-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gp-border);
+    }
+
+    .gp-review-item:last-child { border-bottom: none; }
+
+    .gp-review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .gp-review-user-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gp-review-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .gp-review-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gp-text-primary);
+    }
+
+    .gp-review-kebab {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gp-text-secondary);
+      font-size: 18px;
+    }
+
+    .gp-review-kebab:hover { background: var(--gp-surface); }
+
+    .gp-review-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .gp-review-stars { color: var(--gp-green); font-size: 12px; letter-spacing: 1px; }
+
+    .gp-review-date {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-review-text {
+      font-size: 14px;
+      color: var(--gp-text-primary);
+      line-height: 1.5;
+    }
+
+    .gp-review-helpful {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .gp-helpful-label {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-helpful-btn {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      border: 1px solid var(--gp-border);
+      background: transparent;
+      padding: 4px 12px;
+      border-radius: 12px;
+      transition: background 0.15s;
+    }
+
+    .gp-helpful-btn:hover { background: var(--gp-surface); }
+
+    /* ===== APP INFO (SIDEBAR-STYLE) ===== */
+    .gp-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .gp-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .gp-info-item { display: flex; flex-direction: column; gap: 2px; }
+
+    .gp-info-label {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+    }
+
+    .gp-info-value {
+      font-size: 14px;
+      color: var(--gp-text-primary);
+      font-weight: 400;
+    }
+
+    .gp-info-value a { color: var(--gp-green); }
+    .gp-info-value a:hover { text-decoration: underline; }
+
+    /* ===== DATA SAFETY ===== */
+    .gp-safety-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gp-border);
+    }
+
+    .gp-safety-row:last-child { border-bottom: none; }
+
+    .gp-safety-icon {
+      width: 24px;
+      flex-shrink: 0;
+      color: var(--gp-text-secondary);
+      display: flex;
+      justify-content: center;
+      padding-top: 1px;
+    }
+
+    .gp-safety-text { display: flex; flex-direction: column; gap: 2px; }
+
+    .gp-safety-title {
+      font-size: 14px;
+      color: var(--gp-text-primary);
+      font-weight: 500;
+    }
+
+    .gp-safety-desc { font-size: 12px; color: var(--gp-text-secondary); }
+
+    /* ===== TAGS ===== */
+    .gp-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .gp-tag {
+      font-size: 13px;
+      color: var(--gp-text-primary);
+      border: 1px solid var(--gp-border);
+      border-radius: 16px;
+      padding: 6px 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .gp-tag:hover { background: var(--gp-surface); }
+
+    /* ===== FOOTER ===== */
+    .gp-footer {
+      background: var(--gp-surface);
+      border-top: 1px solid var(--gp-border);
+      padding: 24px 40px;
+      margin-top: 32px;
+    }
+
+    .gp-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 0;
+      margin-bottom: 16px;
+    }
+
+    .gp-footer-link {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      padding: 4px 12px;
+      border-right: 1px solid var(--gp-border);
+    }
+
+    .gp-footer-link:first-child { padding-left: 0; }
+    .gp-footer-link:last-child { border-right: none; }
+    .gp-footer-link:hover { color: var(--gp-text-primary); }
+
+    .gp-footer-copy {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      margin-top: 8px;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .gp-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gp-lightbox.active { display: flex; }
+
+    .gp-lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .gp-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .gp-lightbox-prev,
+    .gp-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .gp-lightbox-prev { left: 20px; }
+    .gp-lightbox-next { right: 20px; }
+    .gp-lightbox-prev:hover, .gp-lightbox-next:hover { background: rgba(255,255,255,0.22); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .gp-main { padding: 12px 16px 40px; }
+      .gp-app-header { grid-template-columns: 1fr; text-align: center; align-items: center; }
+      .gp-app-icon-large { width: 120px; height: 120px; margin: 0 auto; }
+      .gp-app-dev, .gp-app-meta-chips { justify-content: center; }
+      .gp-two-col { grid-template-columns: 1fr; }
+      .gp-topnav { padding: 0 16px; gap: 8px; }
+      .gp-nav-tabs { display: none; }
+      .gp-search-wrap { max-width: none; }
+      .gp-signin-btn { display: none; }
+      .gp-breadcrumb { padding: 0 16px; }
+      .gp-screenshot { height: 180px; width: auto; }
+      .gp-ratings-row { flex-direction: column; align-items: center; }
+      .gp-footer { padding: 20px 16px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Background glows -->
-  <div class="bg-glow-1"></div>
-  <div class="bg-glow-2"></div>
+<!-- ===== TOP NAVIGATION ===== -->
+<nav class="gp-topnav">
+  <a class="gp-nav-logo" href="https://play.google.com/store" target="_blank">
+    <!-- Google Play triangle icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92" width="36" height="36">
+      <path d="M0 0h92v92H0z" fill="none"/>
+      <path d="M46 10.9L8.3 31.6v28.8L46 81.1l37.7-20.7V31.6L46 10.9z" fill="#f0f0f0"/>
+      <path d="M46 10.9l37.7 20.7-37.7 9L8.3 31.6 46 10.9z" fill="#ffcc00"/>
+      <path d="M8.3 31.6L46 40.6v40.5L8.3 60.4V31.6z" fill="#00b0ff"/>
+      <path d="M46 40.6l37.7-9v28.8L46 81.1V40.6z" fill="#ff3d00"/>
+      <path d="M16.9 46l29.1 16.8 29.1-16.8" fill="none"/>
+    </svg>
+    <span class="gp-nav-logo-text">Google Play</span>
+  </a>
 
-  <!-- ==========================================================================
-       NAVIGATION BAR
-       ========================================================================== -->
-  <header class="header-nav" id="main-nav">
-    <div class="nav-container">
-      <a href="#" class="logo-link">
-        <img class="logo-img" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Icon">
-        <span class="logo-text">THUNDER VPN</span>
+  <nav class="gp-nav-tabs">
+    <a class="gp-nav-tab" href="#">Jogos</a>
+    <a class="gp-nav-tab active" href="#">Apps</a>
+    <a class="gp-nav-tab" href="#">Filmes</a>
+    <a class="gp-nav-tab" href="#">Livros</a>
+    <a class="gp-nav-tab" href="#">Crianças</a>
+  </nav>
+
+  <div class="gp-search-wrap">
+    <div class="gp-search-box">
+      <svg class="gp-search-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input class="gp-search-input" type="text" placeholder="Pesquisar apps e jogos" aria-label="Pesquisar">
+    </div>
+  </div>
+
+  <div class="gp-nav-actions">
+    <button class="gp-icon-btn" title="Ajuda">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+      </svg>
+    </button>
+    <button class="gp-signin-btn">Fazer login</button>
+  </div>
+</nav>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="gp-breadcrumb">
+  <a href="#">Início</a>
+  <span class="gp-breadcrumb-sep">›</span>
+  <a href="#">Apps</a>
+  <span class="gp-breadcrumb-sep">›</span>
+  <a href="#">Ferramentas</a>
+  <span class="gp-breadcrumb-sep">›</span>
+  <span class="gp-breadcrumb-current">Thunder VPN - VPN mais segura</span>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="gp-main">
+
+  <!-- APP HEADER CARD -->
+  <div class="gp-app-header">
+    <img
+      class="gp-app-icon-large"
+      src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR=w480-h480"
+      alt="Thunder VPN ícone"
+    >
+
+    <div class="gp-app-header-right">
+      <h1 class="gp-app-title">Thunder VPN - VPN mais segura</h1>
+      <a class="gp-app-dev" href="https://www.securesignal.app/" target="_blank">Secure Signal Inc.</a>
+
+      <div class="gp-app-meta-chips">
+        <span class="gp-chip">Contém anúncios</span>
+        <span class="gp-chip">Compras no app</span>
+      </div>
+
+      <div class="gp-app-rating-row">
+        <div class="gp-stat-block">
+          <div class="gp-stat-val">
+            4,8
+            <svg class="gp-stat-icon gp-stat-ico-rating" xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
+          <div class="gp-stat-lbl">1,48 mi avaliações</div>
+        </div>
+        <div class="gp-stat-sep"></div>
+        <div class="gp-stat-block">
+          <div class="gp-stat-val">50 mi+</div>
+          <div class="gp-stat-lbl">Downloads</div>
+        </div>
+        <div class="gp-stat-sep"></div>
+        <div class="gp-stat-block">
+          <div class="gp-stat-val">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+            </svg>
+          </div>
+          <div class="gp-stat-lbl">Livre (IARC)</div>
+        </div>
+      </div>
+
+      <a
+        href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR"
+        target="_blank"
+        style="display:block;"
+      >
+        <button class="gp-install-btn">Instalar</button>
       </a>
 
-      <!-- View Switcher Toggle -->
-      <div class="view-switcher">
-        <button id="btn-show-landing" class="switch-btn active">
-          <i class="fa-solid fa-rocket"></i> Landing Page
-        </button>
-        <button id="btn-show-playstore" class="switch-btn">
-          <i class="fa-brands fa-google-play"></i> Google Play
-        </button>
+      <div class="gp-device-note">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+        </svg>
+        Este app está disponível para o seu dispositivo
       </div>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="#features" class="nav-link">Recursos</a></li>
-          <li><a href="#servers" class="nav-link">Servidores</a></li>
-          <li><a href="#reviews" class="nav-link">Avaliações</a></li>
-          <li><a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="nav-cta">Baixar Agora</a></li>
-        </ul>
-      </nav>
-
-      <button class="hamburger" id="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
-  </header>
-
-  <!-- ==========================================================================
-       VIEW 1: PREMIUM LANDING PAGE
-       ========================================================================== -->
-  <div id="landing-view" class="view-section active">
-    
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <div class="badge-online">
-          <span class="badge-dot"></span>
-          Conexão Segura Ativa &bull; 99.9% Uptime
-        </div>
-        <h1 class="hero-title">A VPN mais rápida e <br><span class="gradient-text">segura do mundo</span></h1>
-        <p class="hero-subtitle">
-          Criptografe sua conexão com um clique. O 'Thunder VPN' é a ferramenta essencial de segurança cibernética para navegar de forma totalmente anônima, segura e contornar restrições.
-        </p>
-        <div class="hero-actions">
-          <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="btn-primary">
-            <i class="fa-brands fa-google-play"></i> Obter na Google Play
-          </a>
-          <a href="#servers" class="btn-secondary">
-            Ver Servidores <i class="fa-solid fa-server"></i>
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-val">50M+</span>
-            <span class="stat-lbl">Downloads</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-val">4.8★</span>
-            <span class="stat-lbl">Classificação</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-val">100%</span>
-            <span class="stat-lbl">Segurança</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Live Mockup Panel -->
-      <div class="hero-visual">
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-header">
-              <span>Thunder VPN</span>
-              <span id="phone-battery"><i class="fa-solid fa-battery-full"></i> 100%</span>
-            </div>
-            
-            <div style="text-align: center; width: 100%;">
-              <div class="vpn-status-title">Status da Rede</div>
-              <div id="vpn-status-text" class="vpn-status-val">DESCONECTADO</div>
-            </div>
-
-            <!-- Interative Power Button -->
-            <div class="power-button-container">
-              <button id="vpn-connect-btn" class="power-btn">
-                <i class="fa-solid fa-power-off"></i>
-              </button>
-              <div class="pulse-ring-1"></div>
-              <div class="pulse-ring-2"></div>
-            </div>
-
-            <!-- Mockup metrics panel -->
-            <div class="mockup-metrics">
-              <div class="metric-box">
-                <span class="metric-lbl">Velocidade</span>
-                <span id="metric-speed" class="metric-val">-- Mbps</span>
-              </div>
-              <div class="metric-box">
-                <span class="metric-lbl">Ping</span>
-                <span id="metric-ping" class="metric-val">-- ms</span>
-              </div>
-            </div>
-
-            <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 0.5rem;">
-              Toque no botão para simular a conexão
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features-section">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-tag">Por Que Escolher</span>
-          <h2 class="section-title">Proteção Inteligente de Navegação</h2>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3 class="feature-title">Criptografia Total</h3>
-            <p class="feature-desc">Criptografa sua conexão de Internet para que terceiros não consigam rastrear sua atividade online.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fa-solid fa-gauge-high"></i>
-            </div>
-            <h3 class="feature-title">Alta Velocidade</h3>
-            <p class="feature-desc">Grande número de servidores de banda ultra larga com carregamentos e streaming sem interrupções.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fa-solid fa-user-secret"></i>
-            </div>
-            <h3 class="feature-title">Sem Registro</h3>
-            <p class="feature-desc">Política estrita de não registro (no-log). Suas buscas e dados de tráfego nunca são armazenados.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-            </div>
-            <h3 class="feature-title">Configuração Zero</h3>
-            <p class="feature-desc">Nenhum cadastro ou dados adicionais de login necessários. Basta um clique para começar.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Servers Section -->
-    <section id="servers" class="servers-section">
-      <div class="section-container">
-        <div class="servers-container">
-          <div>
-            <span class="section-tag">Rede Global</span>
-            <h2 class="section-title" style="margin-bottom: 1.5rem;">Servidores Gratuitos em Todo o Mundo</h2>
-            <p class="hero-subtitle" style="margin-bottom: 2rem;">
-              Nossa infraestrutura cobre a América do Norte, Europa e Ásia, com expansões frequentes. Altere a localização a qualquer momento para otimizar sua conexão.
-            </p>
-            <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-color)">
-              <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Dica de Conexão</h4>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Se a velocidade diminuir ou a conexão cair, clique no ícone de bandeira no aplicativo móvel para atualizar e selecionar a rede com melhor ping.</p>
-            </div>
-          </div>
-
-          <!-- Interactive server speed widget -->
-          <div class="server-list-card">
-            <div class="server-list-header">
-              <span class="server-list-title">Lista de Servidores</span>
-              <button id="btn-ping-test" class="speedtest-btn">Testar Pings</button>
-            </div>
-            <div class="server-items" id="server-list-container">
-              <!-- JS will inject server list items here -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews-section">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-tag">Opinião de Quem Usa</span>
-          <h2 class="section-title">Avaliações dos Usuários</h2>
-        </div>
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div>
-              <div class="review-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="review-text">"O app Thunder VPN é excelente! Muito bom mesmo. Obrigado ao time que desenvolve e melhora esse app!"</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">M</div>
-              <div class="author-info">
-                <span class="author-name">Marcos Souza</span>
-                <span class="author-title">Usuário Android</span>
-              </div>
-            </div>
-          </div>
-          <div class="review-card">
-            <div>
-              <div class="review-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="review-text">"Uso diariamente e, ao contrário de outros apps, ele mantém a estabilidade. Muito rápido e eficiente!"</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">A</div>
-              <div class="author-info">
-                <span class="author-name">Aline Oliveira</span>
-                <span class="author-title">Usuária Android</span>
-              </div>
-            </div>
-          </div>
-          <div class="review-card">
-            <div>
-              <div class="review-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="review-text">"VPN excelente. Super simples de ligar, não tem telas infinitas de propaganda. Recomendo muito!"</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">F</div>
-              <div class="author-info">
-                <span class="author-name">Felipe Costa</span>
-                <span class="author-title">Usuário Android</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </div>
 
-  <!-- ==========================================================================
-       VIEW 2: GOOGLE PLAY STORE REPLICA
-       ========================================================================== -->
-  <div id="playstore-view" class="view-section">
-    
-    <!-- Header Bar Google Play Style -->
-    <div class="gp-header-bar">
-      <div class="gp-logo-search">
-        <a href="#" class="gp-logo">
-          <svg viewBox="0 0 48 48" width="28" height="28" style="vertical-align: middle;">
-            <path fill="#4CAF50" d="M37 24L11 39V9z"/>
-            <path fill="#FFC107" d="M11 9l18 10L11 39z"/>
-            <path fill="#FF3D00" d="M11 9v30l5-3z"/>
-            <path fill="#1976D2" d="M37 24L29 19 11 39z"/>
-          </svg>
-          <span>Google Play</span>
-        </a>
-        <div class="gp-search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Pesquisar apps e jogos..." disabled value="Thunder VPN">
-        </div>
-      </div>
-      <div class="gp-user-actions">
-        <button class="gp-icon-btn"><i class="fa-regular fa-circle-question"></i></button>
-        <div class="gp-profile-pic">T</div>
-      </div>
+  <!-- SCREENSHOTS -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Capturas de tela</h2>
+    <div class="gp-screenshots-scroll" id="screenshots-container">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/NihdB-ARK09Bzs719HJ-_rFegiTrkKrHlEAGt9SslWDkcLLWWzW3985JOCOy7jnbcVb7pKRZj6ePy3M4NTGYvA=w526-h296" alt="Captura de tela 1" data-index="0">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/ObusWLyYIbimOKSJKKl-r0jZ3OL-ecuuwNmg7W3lFRQ23Qul7_1BxwVxKSSkq299FSGQlrynqLflbFd_a8a8RQ=w526-h296" alt="Captura de tela 2" data-index="1">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/4lMfGV0pEWUJwKWpNxSE0uG76jkOxKyvG-uKfUMPHVrgDZIJAOP0VmYOZ5jsFJdF0Fv3hBcase_X1w4tMfVQJg=w526-h296" alt="Captura de tela 3" data-index="2">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/2C9G_-CAk_QFN_gyzJA4vCqEHVlY1s_fQNCn9AMZAwAWdwRpP5iMHceaiQJMztEYxHtcY_BTru-txSxb1wUDaMI=w526-h296" alt="Captura de tela 4" data-index="3">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/ObiDuCN1LBc7xzQu-bwKcpcuO1KTgvlkTT5tiaVshpx7B9mOo-dn3XdeAtVN1Kwsa69KnkENj_shZ2Ub2dUOiw=w526-h296" alt="Captura de tela 5" data-index="4">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/SENjGKfpZhKOH7-OpRmLpFWFqRP7207Jrl61Gq5LV0wy-1wvsP5WpMVUJSJFJje7FJ-HPCUiG_4xlFxLnPjcSQ=w526-h296" alt="Captura de tela 6" data-index="5">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/BHNdks6fe9W-9kW1T6yPIdLfUNvSzbhUa9IofkB14Ab8R1FcFtdooB6kEt5NSaElMLcHnjbrSs1CexlrN-5L=w526-h296" alt="Captura de tela 7" data-index="6">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/GwJ4cv_d39fE0uHKZ_1EBTgm88MViBxLvELbUVfAGJ8EgpS40JyMDCs3CFyfkKcE0b4jKcY_PJE430hOu8Ji=w526-h296" alt="Captura de tela 8" data-index="7">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/sPHHEJPlxPRMV9yY1TleZUmwy-Gb4XW0Pf0pjiUjV_uUSkHBvdTP1aGPP52VnIvzWb1QqCcDXuInkKETlnl8=w526-h296" alt="Captura de tela 9" data-index="8">
+      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/3saJ_ujb0ld0QHLLLvUZ9KOprWyyNjB7eRChB3jre6Mynf8V7UHap1sCTcC8mKKwt0tax8WYTQDM1vW0dZvEow=w526-h296" alt="Captura de tela 10" data-index="9">
     </div>
-
-    <!-- Play Store Content Layout -->
-    <div class="gp-content-container">
-      
-      <!-- Left Main Column -->
-      <div class="gp-main-col">
-        
-        <!-- App Identity Header -->
-        <div class="gp-app-header-block">
-          <img class="gp-app-icon" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Logo">
-          <div class="gp-app-info">
-            <h1 class="gp-app-title">Thunder VPN - VPN mais segura</h1>
-            <a href="#" class="gp-dev-name">Secure Signal Inc.</a>
-            <span class="gp-tagline">Contém anúncios &bull; Compras no app</span>
-          </div>
-        </div>
-
-        <!-- Google Play Stats Header Row -->
-        <div class="gp-stats-row">
-          <div class="gp-stat-block">
-            <div class="gp-stat-primary">4,8 <i class="fa-solid fa-star" style="font-size: 0.8rem;"></i></div>
-            <div class="gp-stat-secondary">1,48 mi avaliações</div>
-          </div>
-          <div class="gp-stat-divider"></div>
-          <div class="gp-stat-block">
-            <div class="gp-stat-primary">50 mi+</div>
-            <div class="gp-stat-secondary">Downloads</div>
-          </div>
-          <div class="gp-stat-divider"></div>
-          <div class="gp-stat-block">
-            <div class="gp-stat-primary">Livre</div>
-            <div class="gp-stat-secondary">Classificação livre</div>
-          </div>
-        </div>
-
-        <!-- Call to Install -->
-        <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="gp-install-btn">Instalar</a>
-        <div class="gp-device-compat">
-          <i class="fa-solid fa-laptop-code"></i> Este app está disponível para todos os seus dispositivos.
-        </div>
-
-        <!-- Screenshot Gallery -->
-        <h3 class="gp-gallery-title">Capturas de tela</h3>
-        <div class="gp-screenshots-wrapper" id="gp-gallery-container">
-          <!-- Screenshots will be loaded here by script.js -->
-        </div>
-
-        <!-- About this App -->
-        <div class="gp-section-title-row">
-          <h2 class="gp-section-title">Sobre este app</h2>
-          <i class="fa-solid fa-arrow-right gp-section-arrow"></i>
-        </div>
-        
-        <div class="gp-app-description" id="gp-desc-container">
-          <!-- Raw Play Store description injected here by script.js -->
-        </div>
-
-        <!-- Ratings Details -->
-        <h2 class="gp-section-title" style="margin: 2rem 0 1rem;">Notas e avaliações</h2>
-        <div class="gp-ratings-detail">
-          <div>
-            <div class="gp-rating-big-num">4.8</div>
-            <div class="gp-rating-stars-total">
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-              </div>
-              <span class="gp-rating-total-count">1.487.654 avaliações</span>
-            </div>
-          </div>
-          
-          <div class="gp-ratings-bars">
-            <div class="gp-rating-bar-row">
-              <span class="gp-bar-num">5</span>
-              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="gp-rating-bar-row">
-              <span class="gp-bar-num">4</span>
-              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 8%;"></div></div>
-            </div>
-            <div class="gp-rating-bar-row">
-              <span class="gp-bar-num">3</span>
-              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 3%;"></div></div>
-            </div>
-            <div class="gp-rating-bar-row">
-              <span class="gp-bar-num">2</span>
-              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 2%;"></div></div>
-            </div>
-            <div class="gp-rating-bar-row">
-              <span class="gp-bar-num">1</span>
-              <div class="gp-bar-bg"><div class="gp-bar-fill" style="width: 2%;"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Simulated reviews block -->
-        <div class="gp-reviews-list">
-          <div class="gp-review-item">
-            <div class="gp-review-user-header">
-              <div class="gp-review-user">
-                <div class="gp-review-avatar">J</div>
-                <span class="gp-review-name">Jonas Pereira</span>
-              </div>
-              <button class="gp-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-            </div>
-            <div class="gp-review-stars-date">
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <span class="gp-review-date">10 de julho de 2026</span>
-            </div>
-            <p class="gp-review-body">O app é muito bom e cumpre o que promete, que é navegar de forma privada. Tem anúncios, mas são poucos e não atrapalham.</p>
-          </div>
-          <div class="gp-review-item">
-            <div class="gp-review-user-header">
-              <div class="gp-review-user">
-                <div class="gp-review-avatar" style="background:#5C6BC0;">M</div>
-                <span class="gp-review-name">Maria Helena</span>
-              </div>
-              <button class="gp-icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-            </div>
-            <div class="gp-review-stars-date">
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <span class="gp-review-date">3 de junho de 2026</span>
-            </div>
-            <p class="gp-review-body">Estava procurando uma VPN simples e sem burocracia de cadastros. Essa é perfeita. Apenas clico e já estou protegida.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Right Column (Sidebar details) -->
-      <aside class="gp-side-col">
-        <div>
-          <h3 class="gp-side-section-title">Contato do desenvolvedor</h3>
-          <div class="gp-info-list">
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Website</span>
-              <span class="gp-info-val"><a href="https://www.securesignal.app/" target="_blank">securesignal.app</a></span>
-            </div>
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">E-mail</span>
-              <span class="gp-info-val"><a href="mailto:thunder-vpn@free-signal.com">thunder-vpn@free-signal.com</a></span>
-            </div>
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Endereço</span>
-              <span class="gp-info-val">Secure Signal Inc.<br>Delaware, EUA</span>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="gp-side-section-title">Informações adicionais</h3>
-          <div class="gp-info-list">
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Versão</span>
-              <span class="gp-info-val">5.0.12 (última versão)</span>
-            </div>
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Atualizado em</span>
-              <span class="gp-info-val">12 de julho de 2026</span>
-            </div>
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Tamanho do arquivo</span>
-              <span class="gp-info-val">8.2 MB</span>
-            </div>
-            <div class="gp-info-item">
-              <span class="gp-info-lbl">Oferecido por</span>
-              <span class="gp-info-val">Secure Signal Inc.</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-    </div>
-
   </div>
 
-  <!-- ==========================================================================
-       MAIN FOOTER
-       ========================================================================== -->
-  <footer class="main-footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <a href="#" class="logo-link">
-          <img class="logo-img" src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR" alt="Thunder VPN Icon">
-          <span class="logo-text">THUNDER VPN</span>
-        </a>
-        <p class="footer-desc">
-          Uma das ferramentas de rede privada virtual mais populares e seguras no Android. Proteja seu tráfego e aproveite o acesso a servidores no mundo inteiro gratuitamente.
-        </p>
+  <!-- ABOUT -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Sobre este app</h2>
+    <div class="gp-desc-body gp-desc-collapsed" id="gp-desc">
+      O 'Thunder VPN' é um aplicativo ultrarrápido que fornece um serviço de VPN gratuito. Não precisa de nenhuma configuração, basta clicar em um botão e você já pode acessar a Internet de forma segura e anônima.<br><br>
+      O 'Thunder VPN' criptografa sua conexão de Internet, assim, os terceiros não podem rastrear sua atividade online, tornando-a mais segura do que um proxy típico. Deixe sua Internet segura e protegida, especialmente quando você usa Wi-Fi gratuito e público.<br><br>
+      Nós construímos uma rede VPN global incluindo América, Europa e Ásia, expandindo para mais países em breve. A maioria dos servidores é gratuito para uso. Você pode clicar na bandeira e alterar o servidor a qualquer momento.<br><br>
+      <b>Por que escolher o 'Thunder VPN'?</b><br>
+      ✅ Grande número de servidores e largura de banda de alta velocidade<br>
+      ✅ Escolha os aplicativos que usam VPN (requer Android 5.0+)<br>
+      ✅ Funciona com Wi-Fi, 5G, LTE/4G, 3G e todos Suportes de dados móveis<br>
+      ✅ Política estrita de não registro<br>
+      ✅ Escolha inteligente de servidor<br>
+      ✅ Interface de usuário bem projetada, com alguns anúncios<br>
+      ✅ Sem limite de uso e de tempo<br>
+      ✅ Não é necessário registro ou configuração<br>
+      ✅ Não há permissão adicional necessária<br>
+      ✅ Tamanho minúsculo, mais seguro<br><br>
+      Baixe o 'Thunder VPN', a rede privada virtual segura mais rápida do mundo e aproveite tudo!<br><br>
+      Se a conexão do 'Thunder VPN' falhou, não se preocupe, você pode consertar seguindo estas etapas:<br>
+      1) Clique no ícone de bandeira<br>
+      2) Clique no botão Atualizar para verificar os servidores<br>
+      3) Escolha o servidor mais rápido e estável para reconectar<br><br>
+      Esperando sua sugestão e boa avaliação para manter o nosso serviço crescendo e cada vez melhor :-)<br><br>
+      <b>Introdução relacionada à VPN</b><br><br>
+      Uma Rede Privada Virtual (VPN) estende uma rede privada por uma pública e permite que os usuários enviem e recebam dados por redes públicas ou compartilhadas, como se os dispositivos de computação estivessem conectados diretamente à rede privada. Os aplicativos em execução por meio da VPN podem, portanto, se beneficiar da funcionalidade, segurança e gestão da rede privada.<br><br>
+      Os usuários individuais da Internet podem proteger suas transações através do uso de uma VPN, contornando as restrições geográficas e censura, ou conectando-se a servidores proxy com o objetivo de proteger a identidade pessoal e localização.<br><br>
+      As VPNs não podem fazer conexões online completamente anônimas, mas, geralmente, podem aumentar a privacidade e a segurança. Para evitar a divulgação de informações privadas, as VPNs permitem o acesso remoto através do uso de protocolos de encapsulamento e técnicas de criptografia.<br><br>
+      As redes privadas virtuais móveis são usadas em configurações onde um ponto de extremidade da VPN não é fixo em um único endereço IP, mas em vez disso, faz roaming por meio de várias redes, como operadoras de celular ou vários pontos de acesso Wi-Fi.
+    </div>
+    <button class="gp-read-more-btn" id="read-more-btn">Mais informações</button>
+  </div>
+
+  <!-- RATINGS & REVIEWS -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Notas e avaliações</h2>
+
+    <div class="gp-ratings-row">
+      <div class="gp-rating-big">
+        <div class="gp-rating-number">4,8</div>
+        <div class="gp-rating-stars-big">★★★★★</div>
+        <div class="gp-rating-count-small">1.487.654</div>
       </div>
 
-      <div class="footer-links">
-        <div class="footer-link-group">
-          <span class="footer-link-title">Produto</span>
-          <a href="#features" class="footer-link-item">Recursos</a>
-          <a href="#servers" class="footer-link-item">Servidores</a>
-          <a href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR" target="_blank" class="footer-link-item">Download</a>
+      <div class="gp-rating-bars">
+        <div class="gp-bar-row">
+          <span class="gp-bar-label">5</span>
+          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:85%"></div></div>
         </div>
-        <div class="footer-link-group">
-          <span class="footer-link-title">Suporte</span>
-          <a href="https://www.securesignal.app/" class="footer-link-item" target="_blank">Website Oficial</a>
-          <a href="mailto:thunder-vpn@free-signal.com" class="footer-link-item">E-mail</a>
-          <a href="#" class="footer-link-item">FAQ</a>
+        <div class="gp-bar-row">
+          <span class="gp-bar-label">4</span>
+          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:7%"></div></div>
         </div>
-        <div class="footer-link-group">
-          <span class="footer-link-title">Legal</span>
-          <a href="#" class="footer-link-item">Privacidade</a>
-          <a href="#" class="footer-link-item">Termos de Uso</a>
+        <div class="gp-bar-row">
+          <span class="gp-bar-label">3</span>
+          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div>
+        </div>
+        <div class="gp-bar-row">
+          <span class="gp-bar-label">2</span>
+          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:2%"></div></div>
+        </div>
+        <div class="gp-bar-row">
+          <span class="gp-bar-label">1</span>
+          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div>
         </div>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <span>&copy; 2026 Secure Signal Inc. Todos os direitos reservados. Adaptado para Vercel.</span>
-      <div class="footer-socials">
-        <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+    <div class="gp-reviews-list" style="margin-top: 24px;">
+      <div class="gp-review-item">
+        <div class="gp-review-header">
+          <div class="gp-review-user-block">
+            <div class="gp-review-avatar" style="background:#1976d2">M</div>
+            <span class="gp-review-name">Marcos Lopes</span>
+          </div>
+          <button class="gp-review-kebab">⋮</button>
+        </div>
+        <div class="gp-review-meta">
+          <span class="gp-review-stars">★★★★★</span>
+          <span class="gp-review-date">10 de julho de 2026</span>
+        </div>
+        <p class="gp-review-text">O app thunder vpn é excelente! muito bom mesmo. obrigado!</p>
+        <div class="gp-review-helpful">
+          <span class="gp-helpful-label">Isso foi útil?</span>
+          <button class="gp-helpful-btn">Sim</button>
+          <button class="gp-helpful-btn">Não</button>
+        </div>
+      </div>
+
+      <div class="gp-review-item">
+        <div class="gp-review-header">
+          <div class="gp-review-user-block">
+            <div class="gp-review-avatar" style="background:#388e3c">A</div>
+            <span class="gp-review-name">Ana Paula</span>
+          </div>
+          <button class="gp-review-kebab">⋮</button>
+        </div>
+        <div class="gp-review-meta">
+          <span class="gp-review-stars">★★★★★</span>
+          <span class="gp-review-date">5 de julho de 2026</span>
+        </div>
+        <p class="gp-review-text">Uso continuamente, ao contrário de outros aplicativos. Thunder VPN pra mim é muito eficiente.</p>
+        <div class="gp-review-helpful">
+          <span class="gp-helpful-label">Isso foi útil?</span>
+          <button class="gp-helpful-btn">Sim</button>
+          <button class="gp-helpful-btn">Não</button>
+        </div>
+      </div>
+
+      <div class="gp-review-item">
+        <div class="gp-review-header">
+          <div class="gp-review-user-block">
+            <div class="gp-review-avatar" style="background:#e64a19">F</div>
+            <span class="gp-review-name">Felipe R.</span>
+          </div>
+          <button class="gp-review-kebab">⋮</button>
+        </div>
+        <div class="gp-review-meta">
+          <span class="gp-review-stars">★★★★★</span>
+          <span class="gp-review-date">28 de junho de 2026</span>
+        </div>
+        <p class="gp-review-text">Parabéns a todos que melhoram esse app Thunder Vpn. Recomendo aos apaixonados por um excelente VPN gratuito!</p>
+        <div class="gp-review-helpful">
+          <span class="gp-helpful-label">Isso foi útil?</span>
+          <button class="gp-helpful-btn">Sim</button>
+          <button class="gp-helpful-btn">Não</button>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- Custom JS -->
-  <script src="script.js"></script>
+  <!-- DATA SAFETY -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Segurança dos dados</h2>
+    <p style="font-size:13px;color:var(--gp-text-secondary);margin-bottom:16px;">A segurança começa com o entendimento de como os desenvolvedores coletam e compartilham seus dados.</p>
+
+    <div class="gp-safety-row">
+      <div class="gp-safety-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+        </svg>
+      </div>
+      <div class="gp-safety-text">
+        <span class="gp-safety-title">Nenhum dado compartilhado com terceiros</span>
+        <span class="gp-safety-desc">Saiba mais sobre como os desenvolvedores declaram o compartilhamento</span>
+      </div>
+    </div>
+
+    <div class="gp-safety-row">
+      <div class="gp-safety-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 11.75A1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 11.5 11.75 1.25 1.25 0 0 0 10.25 10.5 1.25 1.25 0 0 0 9 11.75zm4.5 0A1.25 1.25 0 0 0 14.75 13 1.25 1.25 0 0 0 16 11.75a1.25 1.25 0 0 0-1.25-1.25A1.25 1.25 0 0 0 13.5 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+      </div>
+      <div class="gp-safety-text">
+        <span class="gp-safety-title">Dados não coletados</span>
+        <span class="gp-safety-desc">O desenvolvedor não coleta dados deste app</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP INFO -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Informações do app</h2>
+    <div class="gp-two-col">
+      <div class="gp-info-list">
+        <div class="gp-info-item">
+          <span class="gp-info-label">Versão</span>
+          <span class="gp-info-value">5.0.12</span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Atualizado em</span>
+          <span class="gp-info-value">12 de julho de 2026</span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Requer Android</span>
+          <span class="gp-info-value">5.0 ou mais recente</span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Downloads</span>
+          <span class="gp-info-value">50.000.000+</span>
+        </div>
+      </div>
+      <div class="gp-info-list">
+        <div class="gp-info-item">
+          <span class="gp-info-label">Oferecido por</span>
+          <span class="gp-info-value">Secure Signal Inc.</span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Desenvolvido por</span>
+          <span class="gp-info-value"><a href="https://www.securesignal.app/" target="_blank">securesignal.app</a></span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Política de privacidade</span>
+          <span class="gp-info-value"><a href="https://www.securesignal.app/" target="_blank">Ver política de privacidade</a></span>
+        </div>
+        <div class="gp-info-item">
+          <span class="gp-info-label">Classificação indicativa</span>
+          <span class="gp-info-value">Livre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="gp-section">
+    <h2 class="gp-section-title">Mais informações</h2>
+    <div class="gp-tags-row">
+      <button class="gp-tag">VPN</button>
+      <button class="gp-tag">Segurança</button>
+      <button class="gp-tag">Privacidade</button>
+      <button class="gp-tag">Ferramentas</button>
+      <button class="gp-tag">Proxy</button>
+      <button class="gp-tag">Wi-Fi</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="gp-footer">
+  <div class="gp-footer-links">
+    <a class="gp-footer-link" href="#">Ajuda</a>
+    <a class="gp-footer-link" href="#">Privacidade</a>
+    <a class="gp-footer-link" href="#">Termos de Serviço</a>
+    <a class="gp-footer-link" href="#">Sobre o Google Play</a>
+    <a class="gp-footer-link" href="#">Desenvolvedores do Google Play</a>
+    <a class="gp-footer-link" href="#">Programa para desenvolvedores do Google Play</a>
+    <a class="gp-footer-link" href="#">Google Store</a>
+  </div>
+  <div class="gp-footer-copy">© 2026 Google LLC</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="gp-lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="gp-lightbox-close" id="lb-close" aria-label="Fechar">✕</button>
+  <button class="gp-lightbox-prev" id="lb-prev" aria-label="Anterior">‹</button>
+  <img class="gp-lightbox-img" id="lb-img" src="" alt="Captura de tela ampliada">
+  <button class="gp-lightbox-next" id="lb-next" aria-label="Próxima">›</button>
+</div>
+
+<script>
+  // ===== DESCRIPTION EXPAND =====
+  const descEl = document.getElementById('gp-desc');
+  const readMoreBtn = document.getElementById('read-more-btn');
+  let expanded = false;
+
+  readMoreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    descEl.classList.toggle('gp-desc-collapsed', !expanded);
+    readMoreBtn.textContent = expanded ? 'Menos informações' : 'Mais informações';
+  });
+
+  // ===== LIGHTBOX =====
+  const screenshots = [
+    'https://play-lh.googleusercontent.com/NihdB-ARK09Bzs719HJ-_rFegiTrkKrHlEAGt9SslWDkcLLWWzW3985JOCOy7jnbcVb7pKRZj6ePy3M4NTGYvA=w1052-h592',
+    'https://play-lh.googleusercontent.com/ObusWLyYIbimOKSJKKl-r0jZ3OL-ecuuwNmg7W3lFRQ23Qul7_1BxwVxKSSkq299FSGQlrynqLflbFd_a8a8RQ=w1052-h592',
+    'https://play-lh.googleusercontent.com/4lMfGV0pEWUJwKWpNxSE0uG76jkOxKyvG-uKfUMPHVrgDZIJAOP0VmYOZ5jsFJdF0Fv3hBcase_X1w4tMfVQJg=w1052-h592',
+    'https://play-lh.googleusercontent.com/2C9G_-CAk_QFN_gyzJA4vCqEHVlY1s_fQNCn9AMZAwAWdwRpP5iMHceaiQJMztEYxHtcY_BTru-txSxb1wUDaMI=w1052-h592',
+    'https://play-lh.googleusercontent.com/ObiDuCN1LBc7xzQu-bwKcpcuO1KTgvlkTT5tiaVshpx7B9mOo-dn3XdeAtVN1Kwsa69KnkENj_shZ2Ub2dUOiw=w1052-h592',
+    'https://play-lh.googleusercontent.com/SENjGKfpZhKOH7-OpRmLpFWFqRP7207Jrl61Gq5LV0wy-1wvsP5WpMVUJSJFJje7FJ-HPCUiG_4xlFxLnPjcSQ=w1052-h592',
+    'https://play-lh.googleusercontent.com/BHNdks6fe9W-9kW1T6yPIdLfUNvSzbhUa9IofkB14Ab8R1FcFtdooB6kEt5NSaElMLcHnjbrSs1CexlrN-5L=w1052-h592',
+    'https://play-lh.googleusercontent.com/GwJ4cv_d39fE0uHKZ_1EBTgm88MViBxLvELbUVfAGJ8EgpS40JyMDCs3CFyfkKcE0b4jKcY_PJE430hOu8Ji=w1052-h592',
+    'https://play-lh.googleusercontent.com/sPHHEJPlxPRMV9yY1TleZUmwy-Gb4XW0Pf0pjiUjV_uUSkHBvdTP1aGPP52VnIvzWb1QqCcDXuInkKETlnl8=w1052-h592',
+    'https://play-lh.googleusercontent.com/3saJ_ujb0ld0QHLLLvUZ9KOprWyyNjB7eRChB3jre6Mynf8V7UHap1sCTcC8mKKwt0tax8WYTQDM1vW0dZvEow=w1052-h592'
+  ];
+
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    lbImg.src = screenshots[idx];
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.gp-screenshot').forEach(img => {
+    img.addEventListener('click', () => openLightbox(parseInt(img.dataset.index)));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+  lbPrev.addEventListener('click', () => {
+    currentIdx = (currentIdx - 1 + screenshots.length) % screenshots.length;
+    lbImg.src = screenshots[currentIdx];
+  });
+
+  lbNext.addEventListener('click', () => {
+    currentIdx = (currentIdx + 1) % screenshots.length;
+    lbImg.src = screenshots[currentIdx];
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  });
+</script>
 </body>
 </html>
