@@ -2,14 +2,17 @@
 <html lang="pt-BR" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>Thunder VPN - VPN mais segura – Apps no Google Play</title>
-  <meta name="description" content="Thunder VPN - VPN mais segura e ultrarrápida">
+  <meta name="description" content="Thunder VPN - VPN mais segura e ultrarrápida. VPN gratuita, sem registro, com servidores globais.">
   <link rel="icon" href="https://www.gstatic.com/android/market_images/web/favicon_v3.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     :root {
       --gp-green: #01875f;
@@ -19,499 +22,481 @@
       --gp-text-secondary: #5f6368;
       --gp-text-muted: #9aa0a6;
       --gp-border: #e8eaed;
-      --gp-bg: #ffffff;
-      --gp-bg-hover: #f8f9fa;
       --gp-surface: #f1f3f4;
+      --nav-h: 56px;
     }
 
-    html { font-size: 16px; }
+    html { font-size: 16px; scroll-behavior: smooth; }
     body {
       font-family: 'Roboto', Arial, sans-serif;
-      background: #f8f9fa;
+      background: #fff;
       color: var(--gp-text-primary);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; font-family: inherit; }
-    img { display: block; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    img { display: block; max-width: 100%; }
 
-    /* ===== TOP NAV ===== */
+    /* =============================================
+       TOP NAV — mobile first
+       ============================================= */
     .gp-topnav {
       background: #fff;
       border-bottom: 1px solid var(--gp-border);
       position: sticky;
       top: 0;
-      z-index: 200;
-      height: 64px;
+      z-index: 300;
+      height: var(--nav-h);
       display: flex;
       align-items: center;
-      padding: 0 28px;
-      gap: 16px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      padding: 0 8px 0 4px;
+      gap: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     }
 
-    .gp-nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .gp-nav-logo-text {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 20px;
-      color: #5f6368;
-      letter-spacing: -0.2px;
-    }
-
-    .gp-nav-logo svg { flex-shrink: 0; }
-
-    .gp-nav-tabs {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-left: 8px;
-      flex-shrink: 0;
-    }
-
-    .gp-nav-tab {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gp-text-secondary);
-      padding: 0 16px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      border-bottom: 3px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-    }
-
-    .gp-nav-tab:hover { color: var(--gp-text-primary); }
-    .gp-nav-tab.active { color: var(--gp-green); border-bottom-color: var(--gp-green); }
-
-    .gp-search-wrap {
-      flex: 1;
-      max-width: 560px;
-      margin-left: auto;
-    }
-
-    .gp-search-box {
-      display: flex;
-      align-items: center;
-      background: var(--gp-surface);
-      border-radius: 24px;
-      padding: 0 16px;
-      height: 46px;
-      gap: 12px;
-      transition: background 0.15s;
-    }
-
-    .gp-search-box:focus-within { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.2); }
-
-    .gp-search-icon { color: var(--gp-text-secondary); flex-shrink: 0; }
-
-    .gp-search-input {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 14px;
-      color: var(--gp-text-primary);
-      width: 100%;
-    }
-
-    .gp-search-input::placeholder { color: var(--gp-text-secondary); }
-
-    .gp-nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .gp-icon-btn {
-      width: 40px;
-      height: 40px;
+    .gp-nav-icon-btn {
+      min-width: 44px;
+      min-height: 44px;
       border-radius: 50%;
-      border: none;
-      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--gp-text-secondary);
+      flex-shrink: 0;
       transition: background 0.15s;
     }
+    .gp-nav-icon-btn:active { background: var(--gp-surface); }
 
-    .gp-icon-btn:hover { background: var(--gp-surface); }
-
-    .gp-signin-btn {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gp-blue);
-      border: 1px solid var(--gp-border);
-      background: transparent;
-      padding: 0 20px;
-      height: 36px;
-      border-radius: 4px;
-      transition: background 0.15s;
-    }
-
-    .gp-signin-btn:hover { background: #e8f0fe; }
-
-    /* ===== BREADCRUMB ===== */
-    .gp-breadcrumb {
-      background: #fff;
-      border-bottom: 1px solid var(--gp-border);
-      padding: 0 40px;
+    .gp-nav-logo {
       display: flex;
       align-items: center;
-      gap: 0;
-      height: 48px;
+      gap: 6px;
+      flex: 1;
+      overflow: hidden;
+    }
+    .gp-nav-logo-text {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 18px;
+      color: #5f6368;
+      white-space: nowrap;
     }
 
-    .gp-breadcrumb a, .gp-breadcrumb span {
-      font-size: 13px;
+    /* Search bar that expands on mobile */
+    .gp-nav-search-btn {
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--gp-text-secondary);
     }
+    .gp-nav-search-btn:active { background: var(--gp-surface); }
 
-    .gp-breadcrumb a:hover { color: var(--gp-green); }
-
-    .gp-breadcrumb-sep {
-      margin: 0 4px;
-      color: var(--gp-text-muted);
+    .gp-nav-profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1a73e8;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-right: 4px;
     }
 
-    .gp-breadcrumb-current {
-      color: var(--gp-text-primary);
-      font-weight: 500;
-    }
+    /* Desktop nav extras — hidden on mobile */
+    .desktop-only { display: none; }
 
-    /* ===== MAIN LAYOUT ===== */
-    .gp-main {
-      max-width: 1128px;
-      margin: 0 auto;
-      padding: 24px 40px 60px;
-      background: #f8f9fa;
-    }
-
-    /* ===== APP HEADER ===== */
-    .gp-app-header {
+    /* Search overlay */
+    .gp-search-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 400;
       background: #fff;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 16px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 24px;
-      align-items: flex-start;
+      height: var(--nav-h);
+      align-items: center;
+      padding: 0 8px;
+      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
+    .gp-search-overlay.open { display: flex; }
+    .gp-search-overlay input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: var(--gp-text-primary);
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .gp-search-overlay input::placeholder { color: var(--gp-text-secondary); }
 
-    .gp-app-icon-large {
-      width: 176px;
-      height: 176px;
-      border-radius: 16px;
-      object-fit: cover;
+    /* =============================================
+       CATEGORY CHIPS BAR (below nav on mobile)
+       ============================================= */
+    .gp-chips-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--gp-border);
+      padding: 0 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .gp-chips-bar::-webkit-scrollbar { display: none; }
+
+    .gp-chip-tab {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gp-text-secondary);
+      padding: 12px 4px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
       flex-shrink: 0;
     }
-
-    .gp-app-header-right {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding-top: 4px;
-    }
-
-    .gp-app-title {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--gp-text-primary);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-
-    .gp-app-dev {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 500;
+    .gp-chip-tab.active {
       color: var(--gp-green);
-      margin-bottom: 8px;
+      border-bottom-color: var(--gp-green);
     }
 
-    .gp-app-dev:hover { text-decoration: underline; }
+    /* =============================================
+       MAIN LAYOUT
+       ============================================= */
+    .gp-page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding-bottom: 80px; /* space for bottom nav */
+    }
 
-    .gp-app-meta-chips {
+    /* =============================================
+       APP IDENTITY SECTION
+       ============================================= */
+    .gp-app-identity {
+      padding: 16px 16px 0;
+      background: #fff;
+    }
+
+    .gp-app-identity-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 16px;
+      align-items: flex-start;
       margin-bottom: 12px;
     }
 
-    .gp-chip {
+    .gp-app-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .gp-app-info { flex: 1; min-width: 0; }
+
+    .gp-app-name {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--gp-text-primary);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .gp-app-dev-link {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gp-green);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .gp-app-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .gp-meta-chip {
       font-size: 11px;
       color: var(--gp-text-secondary);
       background: var(--gp-surface);
-      border-radius: 12px;
-      padding: 3px 10px;
+      border-radius: 10px;
+      padding: 2px 8px;
     }
 
-    .gp-app-rating-row {
+    /* Install / Wishlist row */
+    .gp-cta-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 0 16px;
+    }
+
+    .gp-install-btn {
+      flex: 1;
+      height: 40px;
+      background: var(--gp-green);
+      color: #fff;
+      border-radius: 20px;
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 12px 0;
+      justify-content: center;
+      transition: background 0.15s;
+      min-height: 44px;
+    }
+    .gp-install-btn:active { background: var(--gp-green-dark); }
+
+    .gp-wishlist-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gp-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gp-text-secondary);
+      flex-shrink: 0;
+    }
+    .gp-wishlist-btn:active { background: var(--gp-surface); }
+
+    /* =============================================
+       KEY STATS ROW
+       ============================================= */
+    .gp-stats-strip {
+      display: flex;
       border-top: 1px solid var(--gp-border);
       border-bottom: 1px solid var(--gp-border);
-      margin-bottom: 16px;
+      background: #fff;
     }
 
-    .gp-stat-block {
-      text-align: center;
+    .gp-stat-cell {
       flex: 1;
+      padding: 12px 8px;
+      text-align: center;
+      border-right: 1px solid var(--gp-border);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 3px;
     }
+    .gp-stat-cell:last-child { border-right: none; }
 
-    .gp-stat-val {
+    .gp-stat-v {
       font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--gp-text-primary);
       display: flex;
       align-items: center;
       gap: 3px;
     }
-
-    .gp-stat-icon { font-size: 14px; }
-    .gp-stat-ico-rating { color: var(--gp-green); }
-
-    .gp-stat-lbl {
-      font-size: 11px;
+    .gp-stat-ico { color: var(--gp-green); font-size: 13px; }
+    .gp-stat-l {
+      font-size: 10px;
       color: var(--gp-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
     }
 
-    .gp-stat-sep {
-      width: 1px;
-      height: 40px;
-      background: var(--gp-border);
-    }
-
-    .gp-install-btn {
-      font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      background: var(--gp-green);
-      color: #fff;
-      border: none;
-      padding: 0 24px;
-      height: 40px;
-      border-radius: 4px;
-      width: 100%;
-      margin-bottom: 12px;
-      transition: background 0.15s;
-      letter-spacing: 0.01em;
-    }
-
-    .gp-install-btn:hover { background: var(--gp-green-dark); }
-
-    .gp-device-note {
-      font-size: 12px;
-      color: var(--gp-text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* ===== SCREENSHOTS ===== */
+    /* =============================================
+       SECTION WRAPPER
+       ============================================= */
     .gp-section {
       background: #fff;
-      border-radius: 8px;
-      padding: 20px 24px;
-      margin-bottom: 16px;
+      padding: 16px;
+      border-bottom: 8px solid var(--gp-surface);
     }
 
     .gp-section-title {
       font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 500;
       color: var(--gp-text-primary);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
-    .gp-screenshots-scroll {
+    /* =============================================
+       SCREENSHOTS GALLERY
+       ============================================= */
+    .gp-gallery {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: thin;
-      scrollbar-color: #c1c1c1 transparent;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      margin: 0 -16px;
+      padding-left: 16px;
+      padding-right: 16px;
     }
+    .gp-gallery::-webkit-scrollbar { display: none; }
 
-    .gp-screenshots-scroll::-webkit-scrollbar { height: 6px; }
-    .gp-screenshots-scroll::-webkit-scrollbar-track { background: transparent; }
-    .gp-screenshots-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
-
-    .gp-screenshot {
-      height: 296px;
-      width: 526px;
-      object-fit: cover;
+    .gp-shot {
+      height: 200px;
+      width: auto;
+      min-width: 110px;
       border-radius: 8px;
+      object-fit: cover;
       flex-shrink: 0;
       border: 1px solid var(--gp-border);
       cursor: pointer;
-      transition: opacity 0.15s;
     }
 
-    .gp-screenshot:hover { opacity: 0.92; }
+    /* Landscape screenshots */
+    .gp-shot.landscape {
+      height: 180px;
+      width: 320px;
+    }
 
-    /* ===== DESCRIPTION ===== */
-    .gp-desc-body {
+    /* =============================================
+       DESCRIPTION
+       ============================================= */
+    .gp-desc-text {
       font-size: 14px;
+      line-height: 1.65;
       color: var(--gp-text-primary);
-      line-height: 1.6;
-    }
-
-    .gp-desc-body b { font-weight: 500; }
-
-    .gp-desc-collapsed {
-      max-height: 160px;
       overflow: hidden;
+      max-height: 88px; /* ~4 lines */
       position: relative;
+      transition: max-height 0.3s ease;
     }
-
-    .gp-desc-collapsed::after {
+    .gp-desc-text.expanded { max-height: 2000px; }
+    .gp-desc-text:not(.expanded)::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 0; left: 0;
       width: 100%;
-      height: 60px;
+      height: 44px;
       background: linear-gradient(transparent, #fff);
     }
+    .gp-desc-text b { font-weight: 500; }
 
-    .gp-read-more-btn {
+    .gp-read-more {
       font-family: 'Google Sans', Arial, sans-serif;
       font-size: 14px;
       font-weight: 500;
       color: var(--gp-green);
-      background: transparent;
-      border: none;
-      padding: 12px 0 0;
+      padding-top: 10px;
       display: block;
-      cursor: pointer;
-    }
-
-    .gp-read-more-btn:hover { text-decoration: underline; }
-
-    /* ===== RATINGS SECTION ===== */
-    .gp-ratings-row {
+      min-height: 44px;
       display: flex;
-      gap: 40px;
-      align-items: flex-start;
+      align-items: center;
     }
 
-    .gp-rating-big {
-      text-align: center;
-      flex-shrink: 0;
+    /* =============================================
+       RATINGS
+       ============================================= */
+    .gp-ratings-layout {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    .gp-rating-number {
+    .gp-rating-num {
       font-family: 'Google Sans', Arial, sans-serif;
-      font-size: 64px;
+      font-size: 52px;
       font-weight: 300;
       color: var(--gp-text-primary);
       line-height: 1;
-      margin-bottom: 6px;
+      text-align: center;
     }
 
-    .gp-rating-stars-big {
+    .gp-rating-stars-row {
+      display: flex;
+      gap: 2px;
+      justify-content: center;
+      margin: 4px 0 3px;
+    }
+
+    .gp-star {
+      width: 14px;
+      height: 14px;
       color: var(--gp-green);
-      font-size: 14px;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
     }
+    .gp-star-empty { color: var(--gp-border); }
 
-    .gp-rating-count-small {
-      font-size: 12px;
+    .gp-rating-count {
+      font-size: 11px;
       color: var(--gp-text-secondary);
+      text-align: center;
     }
 
-    .gp-rating-bars {
+    .gp-bars {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .gp-bar-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-
-    .gp-bar-label {
-      font-size: 12px;
+    .gp-bar-num {
+      font-size: 11px;
       color: var(--gp-text-secondary);
       width: 8px;
-      flex-shrink: 0;
       text-align: right;
+      flex-shrink: 0;
     }
-
     .gp-bar-bg {
       flex: 1;
-      height: 8px;
+      height: 6px;
       background: var(--gp-surface);
-      border-radius: 4px;
+      border-radius: 3px;
       overflow: hidden;
     }
-
     .gp-bar-fill {
       height: 100%;
       background: var(--gp-green);
-      border-radius: 4px;
-      transition: width 0.6s ease;
+      border-radius: 3px;
     }
 
-    /* ===== REVIEW CARDS ===== */
-    .gp-reviews-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .gp-review-item {
-      padding: 16px 0;
+    /* =============================================
+       REVIEW CARDS
+       ============================================= */
+    .gp-review {
+      padding: 14px 0;
       border-bottom: 1px solid var(--gp-border);
     }
+    .gp-review:last-child { border-bottom: none; }
 
-    .gp-review-item:last-child { border-bottom: none; }
-
-    .gp-review-header {
+    .gp-review-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 6px;
     }
 
-    .gp-review-user-block {
+    .gp-review-user {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .gp-review-avatar {
-      width: 32px;
-      height: 32px;
+    .gp-avatar {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       color: #fff;
       flex-shrink: 0;
@@ -523,51 +508,49 @@
       color: var(--gp-text-primary);
     }
 
-    .gp-review-kebab {
-      width: 32px;
-      height: 32px;
+    .gp-review-more {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      border: none;
-      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--gp-text-secondary);
-      font-size: 18px;
+      font-size: 16px;
     }
+    .gp-review-more:active { background: var(--gp-surface); }
 
-    .gp-review-kebab:hover { background: var(--gp-surface); }
-
-    .gp-review-meta {
+    .gp-review-stars-date {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .gp-review-stars { color: var(--gp-green); font-size: 12px; letter-spacing: 1px; }
+    .gp-mini-stars { color: var(--gp-green); font-size: 11px; letter-spacing: 1px; }
 
     .gp-review-date {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gp-text-secondary);
     }
 
-    .gp-review-text {
-      font-size: 14px;
+    .gp-review-body {
+      font-size: 13px;
       color: var(--gp-text-primary);
       line-height: 1.5;
     }
 
-    .gp-review-helpful {
+    .gp-helpful-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .gp-helpful-label {
       font-size: 12px;
       color: var(--gp-text-secondary);
+      flex: 1;
     }
 
     .gp-helpful-btn {
@@ -575,74 +558,60 @@
       color: var(--gp-text-secondary);
       border: 1px solid var(--gp-border);
       background: transparent;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 12px;
-      transition: background 0.15s;
+      min-height: 32px;
+    }
+    .gp-helpful-btn:active { background: var(--gp-surface); }
+
+    /* =============================================
+       SAFETY SECTION
+       ============================================= */
+    .gp-safety-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gp-border);
+    }
+    .gp-safety-item:last-child { border-bottom: none; }
+
+    .gp-safety-icon {
+      color: var(--gp-text-secondary);
+      flex-shrink: 0;
+      padding-top: 2px;
     }
 
-    .gp-helpful-btn:hover { background: var(--gp-surface); }
+    .gp-safety-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gp-text-primary);
+    }
 
-    /* ===== APP INFO (SIDEBAR-STYLE) ===== */
-    .gp-two-col {
+    .gp-safety-desc {
+      font-size: 12px;
+      color: var(--gp-text-secondary);
+      margin-top: 2px;
+    }
+
+    /* =============================================
+       APP INFO
+       ============================================= */
+    .gp-info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .gp-info-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      gap: 16px 12px;
     }
 
     .gp-info-item { display: flex; flex-direction: column; gap: 2px; }
-
-    .gp-info-label {
-      font-size: 12px;
-      color: var(--gp-text-secondary);
-    }
-
-    .gp-info-value {
-      font-size: 14px;
-      color: var(--gp-text-primary);
-      font-weight: 400;
-    }
-
+    .gp-info-label { font-size: 11px; color: var(--gp-text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
+    .gp-info-value { font-size: 13px; color: var(--gp-text-primary); font-weight: 400; }
     .gp-info-value a { color: var(--gp-green); }
-    .gp-info-value a:hover { text-decoration: underline; }
 
-    /* ===== DATA SAFETY ===== */
-    .gp-safety-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--gp-border);
-    }
-
-    .gp-safety-row:last-child { border-bottom: none; }
-
-    .gp-safety-icon {
-      width: 24px;
-      flex-shrink: 0;
-      color: var(--gp-text-secondary);
-      display: flex;
-      justify-content: center;
-      padding-top: 1px;
-    }
-
-    .gp-safety-text { display: flex; flex-direction: column; gap: 2px; }
-
-    .gp-safety-title {
-      font-size: 14px;
-      color: var(--gp-text-primary);
-      font-weight: 500;
-    }
-
-    .gp-safety-desc { font-size: 12px; color: var(--gp-text-secondary); }
-
-    /* ===== TAGS ===== */
-    .gp-tags-row {
+    /* =============================================
+       TAGS
+       ============================================= */
+    .gp-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -650,266 +619,477 @@
 
     .gp-tag {
       font-size: 13px;
-      color: var(--gp-text-primary);
+      color: var(--gp-text-secondary);
       border: 1px solid var(--gp-border);
       border-radius: 16px;
-      padding: 6px 16px;
+      padding: 7px 14px;
       background: #fff;
-      cursor: pointer;
-      transition: background 0.15s;
+      min-height: 36px;
     }
+    .gp-tag:active { background: var(--gp-surface); }
 
-    .gp-tag:hover { background: var(--gp-surface); }
-
-    /* ===== FOOTER ===== */
-    .gp-footer {
-      background: var(--gp-surface);
+    /* =============================================
+       BOTTOM NAV (mobile Play Store style)
+       ============================================= */
+    .gp-bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: #fff;
       border-top: 1px solid var(--gp-border);
-      padding: 24px 40px;
-      margin-top: 32px;
-    }
-
-    .gp-footer-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 4px 0;
-      margin-bottom: 16px;
+      z-index: 200;
     }
 
-    .gp-footer-link {
-      font-size: 12px;
+    .gp-bottom-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
       color: var(--gp-text-secondary);
-      padding: 4px 12px;
-      border-right: 1px solid var(--gp-border);
+      font-size: 10px;
+      font-weight: 500;
+      transition: color 0.15s;
+      min-height: 44px;
     }
 
-    .gp-footer-link:first-child { padding-left: 0; }
-    .gp-footer-link:last-child { border-right: none; }
-    .gp-footer-link:hover { color: var(--gp-text-primary); }
+    .gp-bottom-nav-item.active { color: var(--gp-green); }
+    .gp-bottom-nav-item:active { background: var(--gp-surface); }
 
-    .gp-footer-copy {
-      font-size: 12px;
-      color: var(--gp-text-secondary);
-      margin-top: 8px;
-    }
+    .gp-bnav-icon { margin-bottom: 1px; }
 
-    /* ===== LIGHTBOX ===== */
-    .gp-lightbox {
+    /* =============================================
+       LIGHTBOX
+       ============================================= */
+    .gp-lb {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0,0,0,0.9);
       z-index: 9999;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+    .gp-lb.open { display: flex; }
+
+    .gp-lb-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      color: #fff;
+      font-size: 28px;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .gp-lightbox.active { display: flex; }
-
-    .gp-lightbox-img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 8px;
+    .gp-lb-img {
+      max-width: 95vw;
+      max-height: 80vh;
+      border-radius: 6px;
       object-fit: contain;
     }
 
-    .gp-lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      color: #fff;
-      background: rgba(255,255,255,0.1);
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 22px;
+    .gp-lb-arrows {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      gap: 32px;
+      margin-top: 20px;
     }
 
-    .gp-lightbox-prev,
-    .gp-lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+    .gp-lb-arrow {
       color: #fff;
       background: rgba(255,255,255,0.12);
-      border: none;
       border-radius: 50%;
-      width: 52px;
-      height: 52px;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.15s;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .gp-lb-arrow:active { background: rgba(255,255,255,0.25); }
+
+    .gp-lb-counter {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      margin-top: 12px;
     }
 
-    .gp-lightbox-prev { left: 20px; }
-    .gp-lightbox-next { right: 20px; }
-    .gp-lightbox-prev:hover, .gp-lightbox-next:hover { background: rgba(255,255,255,0.22); }
+    /* =============================================
+       FOOTER (minimal on mobile)
+       ============================================= */
+    .gp-footer {
+      background: var(--gp-surface);
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .gp-main { padding: 12px 16px 40px; }
-      .gp-app-header { grid-template-columns: 1fr; text-align: center; align-items: center; }
-      .gp-app-icon-large { width: 120px; height: 120px; margin: 0 auto; }
-      .gp-app-dev, .gp-app-meta-chips { justify-content: center; }
-      .gp-two-col { grid-template-columns: 1fr; }
-      .gp-topnav { padding: 0 16px; gap: 8px; }
-      .gp-nav-tabs { display: none; }
-      .gp-search-wrap { max-width: none; }
-      .gp-signin-btn { display: none; }
-      .gp-breadcrumb { padding: 0 16px; }
-      .gp-screenshot { height: 180px; width: auto; }
-      .gp-ratings-row { flex-direction: column; align-items: center; }
-      .gp-footer { padding: 20px 16px; }
+    .gp-footer-text {
+      font-size: 11px;
+      color: var(--gp-text-muted);
+    }
+
+    /* =============================================
+       DESKTOP OVERRIDES (≥ 768px)
+       ============================================= */
+    @media (min-width: 768px) {
+      :root { --nav-h: 64px; }
+
+      body { background: #f8f9fa; }
+
+      .gp-topnav {
+        padding: 0 24px;
+        gap: 12px;
+      }
+
+      .desktop-only { display: flex; }
+
+      .gp-nav-icon-btn.mobile-only { display: none; }
+
+      .gp-nav-logo { flex: 0 0 auto; }
+      .gp-nav-logo-text { font-size: 20px; }
+
+      /* Desktop tabs next to logo */
+      .gp-desktop-tabs {
+        display: flex;
+        align-items: center;
+        margin-left: 4px;
+      }
+
+      .gp-desktop-tab {
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gp-text-secondary);
+        padding: 0 14px;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+      }
+      .gp-desktop-tab.active { color: var(--gp-green); border-bottom-color: var(--gp-green); }
+      .gp-desktop-tab:hover { color: var(--gp-text-primary); }
+
+      /* Desktop search bar */
+      .gp-desktop-search {
+        flex: 1;
+        max-width: 480px;
+        margin-left: auto;
+      }
+      .gp-desktop-search-box {
+        display: flex;
+        align-items: center;
+        background: var(--gp-surface);
+        border-radius: 24px;
+        padding: 0 16px;
+        height: 44px;
+        gap: 10px;
+        transition: background 0.15s;
+      }
+      .gp-desktop-search-box:focus-within {
+        background: #fff;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+      }
+      .gp-desktop-search-input {
+        border: none; outline: none; background: transparent;
+        font-size: 14px; color: var(--gp-text-primary); width: 100%;
+      }
+      .gp-desktop-search-input::placeholder { color: var(--gp-text-secondary); }
+
+      /* Desktop sign-in */
+      .gp-signin-btn {
+        font-family: 'Google Sans', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--gp-blue);
+        border: 1px solid var(--gp-border);
+        background: transparent;
+        padding: 0 16px;
+        height: 34px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+      .gp-signin-btn:hover { background: #e8f0fe; }
+
+      .gp-chips-bar { padding: 0 24px; }
+
+      .gp-page {
+        max-width: 1128px;
+        margin: 0 auto;
+        padding: 24px 40px 60px;
+      }
+
+      .gp-app-identity {
+        background: #fff;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 16px;
+      }
+
+      .gp-app-identity-row {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .gp-app-icon {
+        width: 164px;
+        height: 164px;
+        border-radius: 16px;
+      }
+
+      .gp-app-name { font-size: 26px; margin-bottom: 6px; }
+      .gp-app-dev-link { font-size: 14px; margin-bottom: 8px; }
+
+      .gp-cta-row {
+        max-width: 360px;
+      }
+
+      .gp-install-btn {
+        border-radius: 4px;
+        height: 40px;
+      }
+
+      .gp-stats-strip {
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 16px;
+      }
+
+      .gp-section {
+        border-radius: 8px;
+        border-bottom: none;
+        margin-bottom: 16px;
+        padding: 20px 24px;
+      }
+
+      .gp-shot { height: 280px; }
+      .gp-shot.landscape { height: 220px; width: 390px; }
+
+      .gp-gallery {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .gp-bottom-nav { display: none; }
+      .gp-footer { margin-bottom: 0; border-radius: 8px; }
+
+      /* Desktop breadcrumb */
+      .gp-breadcrumb {
+        background: #fff;
+        border-bottom: 1px solid var(--gp-border);
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        height: 44px;
+      }
+
+      .gp-breadcrumb a, .gp-breadcrumb span {
+        font-size: 13px;
+        color: var(--gp-text-secondary);
+      }
+
+      .gp-breadcrumb a:hover { color: var(--gp-green); }
+      .gp-breadcrumb-sep { margin: 0 4px; color: var(--gp-text-muted); }
+      .gp-breadcrumb-curr { color: var(--gp-text-primary); }
+
+      .gp-info-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Hide mobile-only elements on desktop */
+    @media (min-width: 768px) {
+      .mobile-only { display: none !important; }
+      .gp-nav-search-btn { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== TOP NAVIGATION ===== -->
-<nav class="gp-topnav">
+<!-- =============================================
+     TOP NAVIGATION
+     ============================================= -->
+<header class="gp-topnav" id="topnav">
+
+  <!-- Mobile: hamburger + logo + search + profile -->
+  <button class="gp-nav-icon-btn mobile-only" aria-label="Menu" onclick="history.back()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+
   <a class="gp-nav-logo" href="https://play.google.com/store" target="_blank">
-    <!-- Google Play real 3D cube logo -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="36" height="36">
-      <!-- Top face: Yellow -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="32" height="32">
       <polygon points="20,2 38,12 20,22 2,12" fill="#FFBB00"/>
-      <!-- Left face: Blue -->
       <polygon points="2,12 20,22 20,38 2,28" fill="#4285F4"/>
-      <!-- Right face: Red -->
       <polygon points="38,12 38,28 20,38 20,22" fill="#EA4335"/>
     </svg>
     <span class="gp-nav-logo-text">Google Play</span>
   </a>
 
-  <nav class="gp-nav-tabs">
-    <a class="gp-nav-tab" href="#">Jogos</a>
-    <a class="gp-nav-tab active" href="#">Apps</a>
-    <a class="gp-nav-tab" href="#">Filmes</a>
-    <a class="gp-nav-tab" href="#">Livros</a>
-    <a class="gp-nav-tab" href="#">Crianças</a>
+  <!-- Desktop: tabs next to logo -->
+  <nav class="gp-desktop-tabs desktop-only">
+    <a class="gp-desktop-tab" href="#">Jogos</a>
+    <a class="gp-desktop-tab active" href="#">Apps</a>
+    <a class="gp-desktop-tab" href="#">Filmes</a>
+    <a class="gp-desktop-tab" href="#">Livros</a>
+    <a class="gp-desktop-tab" href="#">Crianças</a>
   </nav>
 
-  <div class="gp-search-wrap">
-    <div class="gp-search-box">
-      <svg class="gp-search-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
+  <!-- Desktop: search box -->
+  <div class="gp-desktop-search desktop-only">
+    <div class="gp-desktop-search-box">
+      <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" fill="#5f6368">
         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
       </svg>
-      <input class="gp-search-input" type="text" placeholder="Pesquisar apps e jogos" aria-label="Pesquisar">
+      <input class="gp-desktop-search-input" type="text" placeholder="Pesquisar apps e jogos" aria-label="Pesquisar">
     </div>
   </div>
 
-  <div class="gp-nav-actions">
-    <button class="gp-icon-btn" title="Ajuda">
-      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
-      </svg>
-    </button>
-    <button class="gp-signin-btn">Fazer login</button>
-  </div>
-</nav>
+  <!-- Mobile: search icon -->
+  <button class="gp-nav-search-btn" aria-label="Pesquisar" id="search-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor" color="#5f6368">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+  </button>
 
-<!-- ===== BREADCRUMB ===== -->
-<div class="gp-breadcrumb">
+  <!-- Desktop: sign-in + help -->
+  <button class="gp-nav-icon-btn desktop-only" aria-label="Ajuda">
+    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="#5f6368">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+    </svg>
+  </button>
+  <button class="gp-signin-btn desktop-only">Fazer login</button>
+
+  <!-- Profile avatar -->
+  <div class="gp-nav-profile">T</div>
+</header>
+
+<!-- Search overlay (mobile) -->
+<div class="gp-search-overlay" id="search-overlay">
+  <button onclick="document.getElementById('search-overlay').classList.remove('open')" style="color:#5f6368;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </svg>
+  </button>
+  <input type="text" placeholder="Pesquisar apps e jogos" autofocus>
+  <button style="color:#5f6368;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;" onclick="document.getElementById('search-overlay').classList.remove('open')">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Category tabs / Breadcrumb bar -->
+<div class="gp-chips-bar mobile-only">
+  <a class="gp-chip-tab" href="#">Jogos</a>
+  <a class="gp-chip-tab active" href="#">Apps</a>
+  <a class="gp-chip-tab" href="#">Filmes</a>
+  <a class="gp-chip-tab" href="#">Livros</a>
+  <a class="gp-chip-tab" href="#">Crianças</a>
+</div>
+
+<!-- Desktop breadcrumb -->
+<div class="gp-breadcrumb desktop-only">
   <a href="#">Início</a>
   <span class="gp-breadcrumb-sep">›</span>
   <a href="#">Apps</a>
   <span class="gp-breadcrumb-sep">›</span>
   <a href="#">Ferramentas</a>
   <span class="gp-breadcrumb-sep">›</span>
-  <span class="gp-breadcrumb-current">Thunder VPN - VPN mais segura</span>
+  <span class="gp-breadcrumb-curr">Thunder VPN - VPN mais segura</span>
 </div>
 
-<!-- ===== MAIN CONTENT ===== -->
-<main class="gp-main">
+<!-- =============================================
+     MAIN PAGE
+     ============================================= -->
+<main class="gp-page">
 
-  <!-- APP HEADER CARD -->
-  <div class="gp-app-header">
-    <img
-      class="gp-app-icon-large"
-      src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR=w480-h480"
-      alt="Thunder VPN ícone"
-    >
-
-    <div class="gp-app-header-right">
-      <h1 class="gp-app-title">Thunder VPN - VPN mais segura</h1>
-      <a class="gp-app-dev" href="https://www.securesignal.app/" target="_blank">Secure Signal Inc.</a>
-
-      <div class="gp-app-meta-chips">
-        <span class="gp-chip">Contém anúncios</span>
-        <span class="gp-chip">Compras no app</span>
-      </div>
-
-      <div class="gp-app-rating-row">
-        <div class="gp-stat-block">
-          <div class="gp-stat-val">
-            4,8
-            <svg class="gp-stat-icon gp-stat-ico-rating" xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-            </svg>
-          </div>
-          <div class="gp-stat-lbl">1,48 mi avaliações</div>
-        </div>
-        <div class="gp-stat-sep"></div>
-        <div class="gp-stat-block">
-          <div class="gp-stat-val">50 mi+</div>
-          <div class="gp-stat-lbl">Downloads</div>
-        </div>
-        <div class="gp-stat-sep"></div>
-        <div class="gp-stat-block">
-          <div class="gp-stat-val">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-            </svg>
-          </div>
-          <div class="gp-stat-lbl">Livre (IARC)</div>
+  <!-- APP IDENTITY -->
+  <div class="gp-app-identity">
+    <div class="gp-app-identity-row">
+      <img
+        class="gp-app-icon"
+        src="https://play-lh.googleusercontent.com/r2ZcBL6i-AxAPKeXHdx-Bu2vfGtgZtQcbe5IoAhDbnWj2u5vRg_ho3C48mlANsoxq7So-7WfTcMtMjHr0wrR=w240-h240"
+        alt="Thunder VPN ícone"
+        loading="eager"
+      >
+      <div class="gp-app-info">
+        <h1 class="gp-app-name">Thunder VPN<br>- VPN mais segura</h1>
+        <a class="gp-app-dev-link" href="https://www.securesignal.app/" target="_blank">Secure Signal Inc.</a>
+        <div class="gp-app-meta-row">
+          <span class="gp-meta-chip">Contém anúncios</span>
+          <span class="gp-meta-chip">Compras no app</span>
         </div>
       </div>
+    </div>
 
+    <!-- CTA buttons -->
+    <div class="gp-cta-row">
       <a
         href="https://play.google.com/store/apps/details?id=com.fast.free.unblock.thunder.vpn&hl=pt_BR"
         target="_blank"
-        style="display:block;"
+        class="gp-install-btn"
+        role="button"
       >
-        <button class="gp-install-btn">Instalar</button>
+        Instalar
       </a>
-
-      <div class="gp-device-note">
-        <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+      <button class="gp-wishlist-btn" aria-label="Adicionar à lista de desejos">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
-        Este app está disponível para o seu dispositivo
+      </button>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="gp-stats-strip">
+    <div class="gp-stat-cell">
+      <div class="gp-stat-v">
+        4,8
+        <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
       </div>
+      <div class="gp-stat-l">1,48 mi aval.</div>
+    </div>
+    <div class="gp-stat-cell">
+      <div class="gp-stat-v">50 mi+</div>
+      <div class="gp-stat-l">Downloads</div>
+    </div>
+    <div class="gp-stat-cell">
+      <div class="gp-stat-v">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" fill="currentColor" class="gp-stat-ico">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+        </svg>
+      </div>
+      <div class="gp-stat-l">Livre</div>
+    </div>
+    <div class="gp-stat-cell">
+      <div class="gp-stat-v">7,8 MB</div>
+      <div class="gp-stat-l">Tamanho</div>
     </div>
   </div>
 
   <!-- SCREENSHOTS -->
   <div class="gp-section">
-    <h2 class="gp-section-title">Capturas de tela</h2>
-    <div class="gp-screenshots-scroll" id="screenshots-container">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/NihdB-ARK09Bzs719HJ-_rFegiTrkKrHlEAGt9SslWDkcLLWWzW3985JOCOy7jnbcVb7pKRZj6ePy3M4NTGYvA=w526-h296" alt="Captura de tela 1" data-index="0">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/ObusWLyYIbimOKSJKKl-r0jZ3OL-ecuuwNmg7W3lFRQ23Qul7_1BxwVxKSSkq299FSGQlrynqLflbFd_a8a8RQ=w526-h296" alt="Captura de tela 2" data-index="1">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/4lMfGV0pEWUJwKWpNxSE0uG76jkOxKyvG-uKfUMPHVrgDZIJAOP0VmYOZ5jsFJdF0Fv3hBcase_X1w4tMfVQJg=w526-h296" alt="Captura de tela 3" data-index="2">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/2C9G_-CAk_QFN_gyzJA4vCqEHVlY1s_fQNCn9AMZAwAWdwRpP5iMHceaiQJMztEYxHtcY_BTru-txSxb1wUDaMI=w526-h296" alt="Captura de tela 4" data-index="3">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/ObiDuCN1LBc7xzQu-bwKcpcuO1KTgvlkTT5tiaVshpx7B9mOo-dn3XdeAtVN1Kwsa69KnkENj_shZ2Ub2dUOiw=w526-h296" alt="Captura de tela 5" data-index="4">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/SENjGKfpZhKOH7-OpRmLpFWFqRP7207Jrl61Gq5LV0wy-1wvsP5WpMVUJSJFJje7FJ-HPCUiG_4xlFxLnPjcSQ=w526-h296" alt="Captura de tela 6" data-index="5">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/BHNdks6fe9W-9kW1T6yPIdLfUNvSzbhUa9IofkB14Ab8R1FcFtdooB6kEt5NSaElMLcHnjbrSs1CexlrN-5L=w526-h296" alt="Captura de tela 7" data-index="6">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/GwJ4cv_d39fE0uHKZ_1EBTgm88MViBxLvELbUVfAGJ8EgpS40JyMDCs3CFyfkKcE0b4jKcY_PJE430hOu8Ji=w526-h296" alt="Captura de tela 8" data-index="7">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/sPHHEJPlxPRMV9yY1TleZUmwy-Gb4XW0Pf0pjiUjV_uUSkHBvdTP1aGPP52VnIvzWb1QqCcDXuInkKETlnl8=w526-h296" alt="Captura de tela 9" data-index="8">
-      <img class="gp-screenshot" src="https://play-lh.googleusercontent.com/3saJ_ujb0ld0QHLLLvUZ9KOprWyyNjB7eRChB3jre6Mynf8V7UHap1sCTcC8mKKwt0tax8WYTQDM1vW0dZvEow=w526-h296" alt="Captura de tela 10" data-index="9">
+    <div class="gp-gallery" id="gallery">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/NihdB-ARK09Bzs719HJ-_rFegiTrkKrHlEAGt9SslWDkcLLWWzW3985JOCOy7jnbcVb7pKRZj6ePy3M4NTGYvA=w526-h296" alt="Screenshot 1" data-i="0" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/ObusWLyYIbimOKSJKKl-r0jZ3OL-ecuuwNmg7W3lFRQ23Qul7_1BxwVxKSSkq299FSGQlrynqLflbFd_a8a8RQ=w526-h296" alt="Screenshot 2" data-i="1" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/4lMfGV0pEWUJwKWpNxSE0uG76jkOxKyvG-uKfUMPHVrgDZIJAOP0VmYOZ5jsFJdF0Fv3hBcase_X1w4tMfVQJg=w526-h296" alt="Screenshot 3" data-i="2" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/2C9G_-CAk_QFN_gyzJA4vCqEHVlY1s_fQNCn9AMZAwAWdwRpP5iMHceaiQJMztEYxHtcY_BTru-txSxb1wUDaMI=w526-h296" alt="Screenshot 4" data-i="3" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/ObiDuCN1LBc7xzQu-bwKcpcuO1KTgvlkTT5tiaVshpx7B9mOo-dn3XdeAtVN1Kwsa69KnkENj_shZ2Ub2dUOiw=w526-h296" alt="Screenshot 5" data-i="4" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/SENjGKfpZhKOH7-OpRmLpFWFqRP7207Jrl61Gq5LV0wy-1wvsP5WpMVUJSJFJje7FJ-HPCUiG_4xlFxLnPjcSQ=w526-h296" alt="Screenshot 6" data-i="5" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/BHNdks6fe9W-9kW1T6yPIdLfUNvSzbhUa9IofkB14Ab8R1FcFtdooB6kEt5NSaElMLcHnjbrSs1CexlrN-5L=w526-h296" alt="Screenshot 7" data-i="6" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/GwJ4cv_d39fE0uHKZ_1EBTgm88MViBxLvELbUVfAGJ8EgpS40JyMDCs3CFyfkKcE0b4jKcY_PJE430hOu8Ji=w526-h296" alt="Screenshot 8" data-i="7" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/sPHHEJPlxPRMV9yY1TleZUmwy-Gb4XW0Pf0pjiUjV_uUSkHBvdTP1aGPP52VnIvzWb1QqCcDXuInkKETlnl8=w526-h296" alt="Screenshot 9" data-i="8" loading="lazy">
+      <img class="gp-shot landscape" src="https://play-lh.googleusercontent.com/3saJ_ujb0ld0QHLLLvUZ9KOprWyyNjB7eRChB3jre6Mynf8V7UHap1sCTcC8mKKwt0tax8WYTQDM1vW0dZvEow=w526-h296" alt="Screenshot 10" data-i="9" loading="lazy">
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT THIS APP -->
   <div class="gp-section">
     <h2 class="gp-section-title">Sobre este app</h2>
-    <div class="gp-desc-body gp-desc-collapsed" id="gp-desc">
+    <div class="gp-desc-text" id="desc">
       O 'Thunder VPN' é um aplicativo ultrarrápido que fornece um serviço de VPN gratuito. Não precisa de nenhuma configuração, basta clicar em um botão e você já pode acessar a Internet de forma segura e anônima.<br><br>
       O 'Thunder VPN' criptografa sua conexão de Internet, assim, os terceiros não podem rastrear sua atividade online, tornando-a mais segura do que um proxy típico. Deixe sua Internet segura e protegida, especialmente quando você usa Wi-Fi gratuito e público.<br><br>
       Nós construímos uma rede VPN global incluindo América, Europa e Ásia, expandindo para mais países em breve. A maioria dos servidores é gratuito para uso. Você pode clicar na bandeira e alterar o servidor a qualquer momento.<br><br>
@@ -931,104 +1111,95 @@
       3) Escolha o servidor mais rápido e estável para reconectar<br><br>
       Esperando sua sugestão e boa avaliação para manter o nosso serviço crescendo e cada vez melhor :-)<br><br>
       <b>Introdução relacionada à VPN</b><br><br>
-      Uma Rede Privada Virtual (VPN) estende uma rede privada por uma pública e permite que os usuários enviem e recebam dados por redes públicas ou compartilhadas, como se os dispositivos de computação estivessem conectados diretamente à rede privada. Os aplicativos em execução por meio da VPN podem, portanto, se beneficiar da funcionalidade, segurança e gestão da rede privada.<br><br>
+      Uma Rede Privada Virtual (VPN) estende uma rede privada por uma pública e permite que os usuários enviem e recebam dados por redes públicas ou compartilhadas, como se os dispositivos de computação estivessem conectados diretamente à rede privada.<br><br>
       Os usuários individuais da Internet podem proteger suas transações através do uso de uma VPN, contornando as restrições geográficas e censura, ou conectando-se a servidores proxy com o objetivo de proteger a identidade pessoal e localização.<br><br>
-      As VPNs não podem fazer conexões online completamente anônimas, mas, geralmente, podem aumentar a privacidade e a segurança. Para evitar a divulgação de informações privadas, as VPNs permitem o acesso remoto através do uso de protocolos de encapsulamento e técnicas de criptografia.<br><br>
       As redes privadas virtuais móveis são usadas em configurações onde um ponto de extremidade da VPN não é fixo em um único endereço IP, mas em vez disso, faz roaming por meio de várias redes, como operadoras de celular ou vários pontos de acesso Wi-Fi.
     </div>
-    <button class="gp-read-more-btn" id="read-more-btn">Mais informações</button>
+    <button class="gp-read-more" id="read-more-btn">Mais informações</button>
   </div>
 
   <!-- RATINGS & REVIEWS -->
   <div class="gp-section">
     <h2 class="gp-section-title">Notas e avaliações</h2>
 
-    <div class="gp-ratings-row">
-      <div class="gp-rating-big">
-        <div class="gp-rating-number">4,8</div>
-        <div class="gp-rating-stars-big">★★★★★</div>
-        <div class="gp-rating-count-small">1.487.654</div>
+    <div class="gp-ratings-layout">
+      <div>
+        <div class="gp-rating-num">4,8</div>
+        <div class="gp-rating-stars-row">
+          <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg class="gp-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+        </div>
+        <div class="gp-rating-count">1.487.654</div>
       </div>
 
-      <div class="gp-rating-bars">
-        <div class="gp-bar-row">
-          <span class="gp-bar-label">5</span>
-          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="gp-bar-row">
-          <span class="gp-bar-label">4</span>
-          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:7%"></div></div>
-        </div>
-        <div class="gp-bar-row">
-          <span class="gp-bar-label">3</span>
-          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div>
-        </div>
-        <div class="gp-bar-row">
-          <span class="gp-bar-label">2</span>
-          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:2%"></div></div>
-        </div>
-        <div class="gp-bar-row">
-          <span class="gp-bar-label">1</span>
-          <div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div>
-        </div>
+      <div class="gp-bars">
+        <div class="gp-bar-row"><span class="gp-bar-num">5</span><div class="gp-bar-bg"><div class="gp-bar-fill" style="width:85%"></div></div></div>
+        <div class="gp-bar-row"><span class="gp-bar-num">4</span><div class="gp-bar-bg"><div class="gp-bar-fill" style="width:7%"></div></div></div>
+        <div class="gp-bar-row"><span class="gp-bar-num">3</span><div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div></div>
+        <div class="gp-bar-row"><span class="gp-bar-num">2</span><div class="gp-bar-bg"><div class="gp-bar-fill" style="width:2%"></div></div></div>
+        <div class="gp-bar-row"><span class="gp-bar-num">1</span><div class="gp-bar-bg"><div class="gp-bar-fill" style="width:3%"></div></div></div>
       </div>
     </div>
 
-    <div class="gp-reviews-list" style="margin-top: 24px;">
-      <div class="gp-review-item">
-        <div class="gp-review-header">
-          <div class="gp-review-user-block">
-            <div class="gp-review-avatar" style="background:#1976d2">M</div>
+    <!-- Reviews -->
+    <div>
+      <div class="gp-review">
+        <div class="gp-review-top">
+          <div class="gp-review-user">
+            <div class="gp-avatar" style="background:#1976d2">M</div>
             <span class="gp-review-name">Marcos Lopes</span>
           </div>
-          <button class="gp-review-kebab">⋮</button>
+          <button class="gp-review-more">⋮</button>
         </div>
-        <div class="gp-review-meta">
-          <span class="gp-review-stars">★★★★★</span>
+        <div class="gp-review-stars-date">
+          <span class="gp-mini-stars">★★★★★</span>
           <span class="gp-review-date">10 de julho de 2026</span>
         </div>
-        <p class="gp-review-text">O app thunder vpn é excelente! muito bom mesmo. obrigado!</p>
-        <div class="gp-review-helpful">
+        <p class="gp-review-body">O app thunder vpn é excelente! muito bom mesmo. obrigado!</p>
+        <div class="gp-helpful-row">
           <span class="gp-helpful-label">Isso foi útil?</span>
           <button class="gp-helpful-btn">Sim</button>
           <button class="gp-helpful-btn">Não</button>
         </div>
       </div>
 
-      <div class="gp-review-item">
-        <div class="gp-review-header">
-          <div class="gp-review-user-block">
-            <div class="gp-review-avatar" style="background:#388e3c">A</div>
+      <div class="gp-review">
+        <div class="gp-review-top">
+          <div class="gp-review-user">
+            <div class="gp-avatar" style="background:#388e3c">A</div>
             <span class="gp-review-name">Ana Paula</span>
           </div>
-          <button class="gp-review-kebab">⋮</button>
+          <button class="gp-review-more">⋮</button>
         </div>
-        <div class="gp-review-meta">
-          <span class="gp-review-stars">★★★★★</span>
+        <div class="gp-review-stars-date">
+          <span class="gp-mini-stars">★★★★★</span>
           <span class="gp-review-date">5 de julho de 2026</span>
         </div>
-        <p class="gp-review-text">Uso continuamente, ao contrário de outros aplicativos. Thunder VPN pra mim é muito eficiente.</p>
-        <div class="gp-review-helpful">
+        <p class="gp-review-body">Uso continuamente, ao contrário de outros aplicativos. Thunder VPN pra mim é muito eficiente.</p>
+        <div class="gp-helpful-row">
           <span class="gp-helpful-label">Isso foi útil?</span>
           <button class="gp-helpful-btn">Sim</button>
           <button class="gp-helpful-btn">Não</button>
         </div>
       </div>
 
-      <div class="gp-review-item">
-        <div class="gp-review-header">
-          <div class="gp-review-user-block">
-            <div class="gp-review-avatar" style="background:#e64a19">F</div>
+      <div class="gp-review">
+        <div class="gp-review-top">
+          <div class="gp-review-user">
+            <div class="gp-avatar" style="background:#e64a19">F</div>
             <span class="gp-review-name">Felipe R.</span>
           </div>
-          <button class="gp-review-kebab">⋮</button>
+          <button class="gp-review-more">⋮</button>
         </div>
-        <div class="gp-review-meta">
-          <span class="gp-review-stars">★★★★★</span>
+        <div class="gp-review-stars-date">
+          <span class="gp-mini-stars">★★★★★</span>
           <span class="gp-review-date">28 de junho de 2026</span>
         </div>
-        <p class="gp-review-text">Parabéns a todos que melhoram esse app Thunder Vpn. Recomendo aos apaixonados por um excelente VPN gratuito!</p>
-        <div class="gp-review-helpful">
+        <p class="gp-review-body">Parabéns a todos que melhoram esse app Thunder VPN. Recomendo aos apaixonados por um excelente VPN gratuito!</p>
+        <div class="gp-helpful-row">
           <span class="gp-helpful-label">Isso foi útil?</span>
           <button class="gp-helpful-btn">Sim</button>
           <button class="gp-helpful-btn">Não</button>
@@ -1040,29 +1211,29 @@
   <!-- DATA SAFETY -->
   <div class="gp-section">
     <h2 class="gp-section-title">Segurança dos dados</h2>
-    <p style="font-size:13px;color:var(--gp-text-secondary);margin-bottom:16px;">A segurança começa com o entendimento de como os desenvolvedores coletam e compartilham seus dados.</p>
+    <p style="font-size:13px;color:var(--gp-text-secondary);margin-bottom:14px;">A segurança começa com o entendimento de como os desenvolvedores coletam e compartilham seus dados.</p>
 
-    <div class="gp-safety-row">
+    <div class="gp-safety-item">
       <div class="gp-safety-icon">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
         </svg>
       </div>
-      <div class="gp-safety-text">
-        <span class="gp-safety-title">Nenhum dado compartilhado com terceiros</span>
-        <span class="gp-safety-desc">Saiba mais sobre como os desenvolvedores declaram o compartilhamento</span>
+      <div>
+        <div class="gp-safety-label">Nenhum dado compartilhado com terceiros</div>
+        <div class="gp-safety-desc">Saiba mais sobre como os desenvolvedores declaram o compartilhamento</div>
       </div>
     </div>
 
-    <div class="gp-safety-row">
+    <div class="gp-safety-item">
       <div class="gp-safety-icon">
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M9 11.75A1.25 1.25 0 0 0 10.25 13 1.25 1.25 0 0 0 11.5 11.75 1.25 1.25 0 0 0 10.25 10.5 1.25 1.25 0 0 0 9 11.75zm4.5 0A1.25 1.25 0 0 0 14.75 13 1.25 1.25 0 0 0 16 11.75a1.25 1.25 0 0 0-1.25-1.25A1.25 1.25 0 0 0 13.5 11.75zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       </div>
-      <div class="gp-safety-text">
-        <span class="gp-safety-title">Dados não coletados</span>
-        <span class="gp-safety-desc">O desenvolvedor não coleta dados deste app</span>
+      <div>
+        <div class="gp-safety-label">Dados não coletados</div>
+        <div class="gp-safety-desc">O desenvolvedor não coleta dados deste app</div>
       </div>
     </div>
   </div>
@@ -1070,50 +1241,46 @@
   <!-- APP INFO -->
   <div class="gp-section">
     <h2 class="gp-section-title">Informações do app</h2>
-    <div class="gp-two-col">
-      <div class="gp-info-list">
-        <div class="gp-info-item">
-          <span class="gp-info-label">Versão</span>
-          <span class="gp-info-value">5.0.12</span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Atualizado em</span>
-          <span class="gp-info-value">12 de julho de 2026</span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Requer Android</span>
-          <span class="gp-info-value">5.0 ou mais recente</span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Downloads</span>
-          <span class="gp-info-value">50.000.000+</span>
-        </div>
+    <div class="gp-info-grid">
+      <div class="gp-info-item">
+        <span class="gp-info-label">Versão</span>
+        <span class="gp-info-value">5.0.12</span>
       </div>
-      <div class="gp-info-list">
-        <div class="gp-info-item">
-          <span class="gp-info-label">Oferecido por</span>
-          <span class="gp-info-value">Secure Signal Inc.</span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Desenvolvido por</span>
-          <span class="gp-info-value"><a href="https://www.securesignal.app/" target="_blank">securesignal.app</a></span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Política de privacidade</span>
-          <span class="gp-info-value"><a href="https://www.securesignal.app/" target="_blank">Ver política de privacidade</a></span>
-        </div>
-        <div class="gp-info-item">
-          <span class="gp-info-label">Classificação indicativa</span>
-          <span class="gp-info-value">Livre</span>
-        </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Atualizado em</span>
+        <span class="gp-info-value">12 jul 2026</span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Requer Android</span>
+        <span class="gp-info-value">5.0+</span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Downloads</span>
+        <span class="gp-info-value">50.000.000+</span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Oferecido por</span>
+        <span class="gp-info-value">Secure Signal Inc.</span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Website</span>
+        <span class="gp-info-value"><a href="https://www.securesignal.app/" target="_blank">securesignal.app</a></span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">E-mail</span>
+        <span class="gp-info-value"><a href="mailto:thunder-vpn@free-signal.com">Contato</a></span>
+      </div>
+      <div class="gp-info-item">
+        <span class="gp-info-label">Classificação</span>
+        <span class="gp-info-value">Livre</span>
       </div>
     </div>
   </div>
 
   <!-- TAGS -->
   <div class="gp-section">
-    <h2 class="gp-section-title">Mais informações</h2>
-    <div class="gp-tags-row">
+    <h2 class="gp-section-title">Tags</h2>
+    <div class="gp-tags">
       <button class="gp-tag">VPN</button>
       <button class="gp-tag">Segurança</button>
       <button class="gp-tag">Privacidade</button>
@@ -1123,44 +1290,76 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <div class="gp-footer">
+    <p class="gp-footer-text">© 2026 Google LLC &nbsp;·&nbsp; <a href="#" style="color:var(--gp-text-muted)">Termos</a> &nbsp;·&nbsp; <a href="#" style="color:var(--gp-text-muted)">Privacidade</a></p>
+  </div>
+
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="gp-footer">
-  <div class="gp-footer-links">
-    <a class="gp-footer-link" href="#">Ajuda</a>
-    <a class="gp-footer-link" href="#">Privacidade</a>
-    <a class="gp-footer-link" href="#">Termos de Serviço</a>
-    <a class="gp-footer-link" href="#">Sobre o Google Play</a>
-    <a class="gp-footer-link" href="#">Desenvolvedores do Google Play</a>
-    <a class="gp-footer-link" href="#">Programa para desenvolvedores do Google Play</a>
-    <a class="gp-footer-link" href="#">Google Store</a>
-  </div>
-  <div class="gp-footer-copy">© 2026 Google LLC</div>
-</footer>
+<!-- =============================================
+     BOTTOM NAVIGATION (mobile only)
+     ============================================= -->
+<nav class="gp-bottom-nav" aria-label="Navegação principal">
+  <a class="gp-bottom-nav-item" href="#">
+    <svg class="gp-bnav-icon" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+    Início
+  </a>
+  <a class="gp-bottom-nav-item active" href="#">
+    <svg class="gp-bnav-icon" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+    Apps
+  </a>
+  <a class="gp-bottom-nav-item" href="#">
+    <svg class="gp-bnav-icon" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+    </svg>
+    Atualizações
+  </a>
+  <a class="gp-bottom-nav-item" href="#">
+    <svg class="gp-bnav-icon" xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+    </svg>
+    Conta
+  </a>
+</nav>
 
-<!-- LIGHTBOX -->
-<div class="gp-lightbox" id="lightbox" role="dialog" aria-modal="true">
-  <button class="gp-lightbox-close" id="lb-close" aria-label="Fechar">✕</button>
-  <button class="gp-lightbox-prev" id="lb-prev" aria-label="Anterior">‹</button>
-  <img class="gp-lightbox-img" id="lb-img" src="" alt="Captura de tela ampliada">
-  <button class="gp-lightbox-next" id="lb-next" aria-label="Próxima">›</button>
+<!-- =============================================
+     LIGHTBOX
+     ============================================= -->
+<div class="gp-lb" id="lb" role="dialog" aria-modal="true" aria-label="Visualizador de imagens">
+  <button class="gp-lb-close" id="lb-close" aria-label="Fechar">✕</button>
+  <img class="gp-lb-img" id="lb-img" src="" alt="Screenshot ampliada">
+  <div class="gp-lb-arrows">
+    <button class="gp-lb-arrow" id="lb-prev" aria-label="Anterior">‹</button>
+    <button class="gp-lb-arrow" id="lb-next" aria-label="Próxima">›</button>
+  </div>
+  <div class="gp-lb-counter" id="lb-counter">1 / 10</div>
 </div>
 
 <script>
   // ===== DESCRIPTION EXPAND =====
-  const descEl = document.getElementById('gp-desc');
+  const desc = document.getElementById('desc');
   const readMoreBtn = document.getElementById('read-more-btn');
   let expanded = false;
 
   readMoreBtn.addEventListener('click', () => {
     expanded = !expanded;
-    descEl.classList.toggle('gp-desc-collapsed', !expanded);
+    desc.classList.toggle('expanded', expanded);
     readMoreBtn.textContent = expanded ? 'Menos informações' : 'Mais informações';
   });
 
+  // ===== SEARCH OVERLAY =====
+  document.getElementById('search-toggle').addEventListener('click', () => {
+    document.getElementById('search-overlay').classList.add('open');
+    setTimeout(() => document.querySelector('#search-overlay input').focus(), 100);
+  });
+
   // ===== LIGHTBOX =====
-  const screenshots = [
+  const shots = [
     'https://play-lh.googleusercontent.com/NihdB-ARK09Bzs719HJ-_rFegiTrkKrHlEAGt9SslWDkcLLWWzW3985JOCOy7jnbcVb7pKRZj6ePy3M4NTGYvA=w1052-h592',
     'https://play-lh.googleusercontent.com/ObusWLyYIbimOKSJKKl-r0jZ3OL-ecuuwNmg7W3lFRQ23Qul7_1BxwVxKSSkq299FSGQlrynqLflbFd_a8a8RQ=w1052-h592',
     'https://play-lh.googleusercontent.com/4lMfGV0pEWUJwKWpNxSE0uG76jkOxKyvG-uKfUMPHVrgDZIJAOP0VmYOZ5jsFJdF0Fv3hBcase_X1w4tMfVQJg=w1052-h592',
@@ -1173,47 +1372,61 @@
     'https://play-lh.googleusercontent.com/3saJ_ujb0ld0QHLLLvUZ9KOprWyyNjB7eRChB3jre6Mynf8V7UHap1sCTcC8mKKwt0tax8WYTQDM1vW0dZvEow=w1052-h592'
   ];
 
-  const lightbox = document.getElementById('lightbox');
+  const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
-  const lbClose = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  let currentIdx = 0;
+  const lbCounter = document.getElementById('lb-counter');
+  let curIdx = 0;
 
-  function openLightbox(idx) {
-    currentIdx = idx;
-    lbImg.src = screenshots[idx];
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  function setLbImg(i) {
+    curIdx = (i + shots.length) % shots.length;
+    lbImg.src = shots[curIdx];
+    lbCounter.textContent = `${curIdx + 1} / ${shots.length}`;
   }
 
-  function closeLightbox() {
-    lightbox.classList.remove('active');
+  document.querySelectorAll('.gp-shot').forEach(img => {
+    img.addEventListener('click', () => {
+      setLbImg(parseInt(img.dataset.i || 0));
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', () => {
+    lb.classList.remove('open');
     document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.gp-screenshot').forEach(img => {
-    img.addEventListener('click', () => openLightbox(parseInt(img.dataset.index)));
   });
 
-  lbClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
-  lbPrev.addEventListener('click', () => {
-    currentIdx = (currentIdx - 1 + screenshots.length) % screenshots.length;
-    lbImg.src = screenshots[currentIdx];
+  lb.addEventListener('click', e => {
+    if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
   });
 
-  lbNext.addEventListener('click', () => {
-    currentIdx = (currentIdx + 1) % screenshots.length;
-    lbImg.src = screenshots[currentIdx];
-  });
+  document.getElementById('lb-prev').addEventListener('click', () => setLbImg(curIdx - 1));
+  document.getElementById('lb-next').addEventListener('click', () => setLbImg(curIdx + 1));
 
   document.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lbPrev.click();
-    if (e.key === 'ArrowRight') lbNext.click();
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    if (e.key === 'ArrowLeft') setLbImg(curIdx - 1);
+    if (e.key === 'ArrowRight') setLbImg(curIdx + 1);
+  });
+
+  // ===== TOUCH SWIPE for lightbox =====
+  let touchStartX = 0;
+  lbImg.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
+  lbImg.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { dx < 0 ? setLbImg(curIdx + 1) : setLbImg(curIdx - 1); }
+  }, {passive: true});
+
+  // ===== HELPFUL BTN TOGGLE =====
+  document.querySelectorAll('.gp-helpful-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.gp-helpful-row');
+      row.querySelectorAll('.gp-helpful-btn').forEach(b => b.style.background = '');
+      btn.style.background = '#e6f4ea';
+      btn.style.borderColor = '#01875f';
+      btn.style.color = '#01875f';
+    });
   });
 </script>
 </body>
